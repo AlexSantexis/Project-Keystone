@@ -1,0 +1,17 @@
+[01-06-2024 19:47:38408 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider ] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+[01-06-2024 19:47:38427 +03:00 Project_Keystone.Program ] Starting the application...
+[01-06-2024 19:47:38428 +03:00 Project_Keystone.Program ] Application started
+[01-06-2024 19:47:38449 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[01-06-2024 19:47:38576 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[01-06-2024 19:47:38577 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[01-06-2024 19:47:38577 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[01-06-2024 19:47:38577 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[01-06-2024 19:47:38578 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[01-06-2024 19:47:39024 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[01-06-2024 19:47:39140 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 120.1253ms
+[01-06-2024 19:47:39346 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[01-06-2024 19:47:39346 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[01-06-2024 19:47:39350 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 4.3442ms
+[01-06-2024 19:47:39370 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 24.2209ms
+[01-06-2024 19:47:39423 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[01-06-2024 19:47:39441 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 18.0957ms

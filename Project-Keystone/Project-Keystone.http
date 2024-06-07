@@ -1,0 +1,6 @@
+@Project_Keystone_HostAddress = http://localhost:5153
+
+GET {{Project_Keystone_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
