@@ -59,6 +59,7 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Ignore(e => e.NormalizedUserName);
                 entity.Ignore(e => e.AccessFailedCount);
                 entity.Ignore(e => e.PhoneNumber);
+                entity.Ignore(e => e.UserName);
             });
 
             modelBuilder.Entity<Role>(entity =>

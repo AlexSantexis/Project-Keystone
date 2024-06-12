@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_Keystone.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Project_Keystone.Infrastructure.Data;
 namespace Project_Keystone.Migrations
 {
     [DbContext(typeof(ProjectKeystoneDbContext))]
-    partial class ProjectKeystoneDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240612061235_UpdatedUserRepository")]
+    partial class UpdatedUserRepository
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

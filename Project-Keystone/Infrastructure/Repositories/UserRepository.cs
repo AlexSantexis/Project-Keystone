@@ -41,7 +41,7 @@ namespace Project_Keystone.Infrastructure.Repositories
         public async Task<List<User>> GetAllUsersFilteredAsync(int pageNumber, int pageSize, List<Func<User, bool>> filters)
         {
 
-            int skip = pageSize * pageNumber;
+            int skip = pageSize * (pageNumber -1 );
             IQueryable<User> query = _context.Users.Skip(skip).Take(pageSize);
             if(filters != null && filters.Any())
             {
@@ -50,9 +50,9 @@ namespace Project_Keystone.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<User?> GetUserAsync(string username, string password)
+        public async Task<User?> GetUserAsync(string email, string password)
         {
-            var user  = await _userManager.FindByNameAsync(username);
+            var user  = await _userManager.FindByEmailAsync(email);
             if(user != null && await _userManager.CheckPasswordAsync(user, password)) 
             {
                 return user;
@@ -60,10 +60,11 @@ namespace Project_Keystone.Infrastructure.Repositories
             return null;
         }
 
-        public async Task<User?> GetUserByUsernameAsync(string username)
+        public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
 
         public async Task<List<string>> GetUserRolesAsync(int userId)
         {
