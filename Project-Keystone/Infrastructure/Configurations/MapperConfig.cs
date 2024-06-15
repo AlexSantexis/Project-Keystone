@@ -7,7 +7,11 @@ namespace Project_Keystone.Infrastructure.Configurations
     public class MapperConfig : Profile
     {
         public MapperConfig() {
-            CreateMap<User,UserDTO>().ReverseMap(); // <from, to>
+            CreateMap<User,UserLoginDTO>().ReverseMap(); // ReverseMap<>
+            CreateMap<UserRegisterDTO,User>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
+                .ReverseMap();
+                
         }
     }
 }

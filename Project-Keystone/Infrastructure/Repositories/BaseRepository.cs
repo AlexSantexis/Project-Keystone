@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project_Keystone.Infrastructure.Data;
-using Project_Keystone.Infrastructure.Repositories.Interfaces;
+using Project_Keystone.Core.Interfaces;
 using System.Linq.Expressions;
 
 namespace Project_Keystone.Infrastructure.Repositories

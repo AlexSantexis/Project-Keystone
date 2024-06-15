@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
-using Project_Keystone.Infrastructure.Repositories.Interfaces;
+using Project_Keystone.Core.Interfaces;
 
 namespace Project_Keystone.Infrastructure.Repositories
 {
@@ -11,13 +11,12 @@ namespace Project_Keystone.Infrastructure.Repositories
     {
 
         private readonly UserManager<User> _userManager;
-        
-
-        public UserRepository(ProjectKeystoneDbContext context,UserManager<User> userManager) :base(context)
+        public UserRepository(ProjectKeystoneDbContext context, UserManager<User> userManager) : base(context)
         {
             _userManager = userManager;
         }
 
+       
         public async Task AddUserRoleAsync(int userId, string role)
         {
             var user = await GetByIdAsync(userId);
@@ -25,17 +24,6 @@ namespace Project_Keystone.Infrastructure.Repositories
             {
                 await _userManager.AddToRoleAsync(user, role);
             }
-        }
-
-        public async Task<bool> ChangePasswordAsync(int userId, string currentPassword, string newPassword)
-        {
-            var user = await GetByIdAsync(userId);
-            if(user != null)
-            {
-                var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
-                return result.Succeeded;
-            }
-            return false;
         }
 
         public async Task<List<User>> GetAllUsersFilteredAsync(int pageNumber, int pageSize, List<Func<User, bool>> filters)
@@ -50,31 +38,11 @@ namespace Project_Keystone.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<User?> GetUserAsync(string email, string password)
-        {
-            var user  = await _userManager.FindByEmailAsync(email);
-            if(user != null && await _userManager.CheckPasswordAsync(user, password)) 
-            {
-                return user;
-            }
-            return null;
-        }
-
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return await _userManager.FindByEmailAsync(email);
         }
 
-
-        public async Task<List<string>> GetUserRolesAsync(int userId)
-        {
-            var user = await GetByIdAsync(userId);
-            if (user != null)
-            {
-                return (await _userManager.GetRolesAsync(user)).ToList();
-            }
-            return new List<string>();
-        }
 
         public async Task RemoveUserRoleAsync(int userId, string role)
         {

@@ -16,6 +16,6 @@ namespace Project_Keystone.Api.Models.DTOs
 
         [Required]
         public DateTime AddedAt { get; set; }
-        public ProductDTO Product { get; set; }
+        public ProductDTO? Product { get; set; }
     }
 }

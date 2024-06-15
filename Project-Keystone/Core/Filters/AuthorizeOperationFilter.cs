@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Models;
 using Project_Keystone.Core.Entities;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Project_Keystone.Filters
+namespace Project_Keystone.Core.Filters
 {
     public class AuthorizeOperationFilter : IOperationFilter
     {
@@ -16,7 +16,7 @@ namespace Project_Keystone.Filters
                  .OfType<AuthorizeAttribute>()
                  .Distinct();
 
-            if(authAttributes.Any())
+            if (authAttributes.Any())
             {
                 operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
                 operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
@@ -36,12 +36,12 @@ namespace Project_Keystone.Filters
                     .Where(attr => !string.IsNullOrWhiteSpace(attr.Roles))
                     .SelectMany(attr => attr.Roles!.Split(','))
                     .Distinct();
-                if(roles.Any())
+                if (roles.Any())
                 {
                     operation.Description += $"Roles: {string.Join(", ", roles)}";
                 }
             }
-           
+
         }
     }
 }

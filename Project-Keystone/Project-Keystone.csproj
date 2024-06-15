@@ -41,7 +41,6 @@
   <ItemGroup>
     <Folder Include="Core\Exceptions\" />
     <Folder Include="Infrastructure\Logging\" />
-    <Folder Include="Infrastructure\Services\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Project_Keystone.Core.Entities;
 
-namespace Project_Keystone.Infrastructure.Repositories.Interfaces
+namespace Project_Keystone.Core.Interfaces
 {
     public interface IBasketRepository : IBaseRepository<Basket>
     {

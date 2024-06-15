@@ -1,4 +1,4 @@
-﻿namespace Project_Keystone.Infrastructure.Repositories.Interfaces
+﻿namespace Project_Keystone.Core.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -11,8 +11,7 @@
         IGenreRepository Genres { get; }
         IOrderDetailRepository OrderDetails { get; }
         IProductGenreRepository ProductGenres { get; }
-        //IRoleRepository Roles { get; }
-        //IUserRoleRepository UserRoles { get; }
-        Task<int> CompleteAsync();
+        
+        Task<int> CommitAsync();
     }
 }

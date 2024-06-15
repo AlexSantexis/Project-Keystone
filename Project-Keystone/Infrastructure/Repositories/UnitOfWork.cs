@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
-using Project_Keystone.Infrastructure.Repositories.Interfaces;
+using Project_Keystone.Core.Interfaces;
 using System.Data;
 
 namespace Project_Keystone.Infrastructure.Repositories
@@ -10,21 +10,21 @@ namespace Project_Keystone.Infrastructure.Repositories
     {
         private readonly ProjectKeystoneDbContext _context;
 
-       public UnitOfWork(ProjectKeystoneDbContext context,UserManager<User> userManager)
+        public UnitOfWork(ProjectKeystoneDbContext context, IBasketRepository baskets, ICategoryRepository categories, IOrderRepository orders, IProductRepository products, IUserRepository users, IWishListRepository wishlists, IGenreRepository genres, IOrderDetailRepository orderDetails, IProductGenreRepository productGenres)
         {
             _context = context;
-            Baskets = new BasketRepository(_context);
-            Categories = new CategoryRepository(_context);
-            Orders = new OrderRepository(_context);
-            Products = new ProductRepository(_context);
-            Users = new UserRepository(_context,userManager);
-            Wishlists = new WishlistRepository(_context);
-            Genres = new GenreRepository(_context);
-            OrderDetails = new OrderDetailRepository(_context);
-            ProductGenres = new ProductGenreRepository(_context);
-            //Roles = new RoleRepository(_context);
-            //UserRoles = new UserRoleRepository(_context);
+            Baskets = baskets;
+            Categories = categories;
+            Orders = orders;
+            Products = products;
+            Users = users;
+            Wishlists = wishlists;
+            Genres = genres;
+            OrderDetails = orderDetails;
+            ProductGenres = productGenres;
+            
         }
+
         public IBasketRepository Baskets { get; private set; }
         public ICategoryRepository Categories { get; private set; }
         public IOrderRepository Orders { get; private set; }
@@ -34,10 +34,9 @@ namespace Project_Keystone.Infrastructure.Repositories
         public IGenreRepository Genres { get; private set; }
         public IOrderDetailRepository OrderDetails { get; private set; }
         public IProductGenreRepository ProductGenres { get; private set; }
-        //public IRoleRepository Roles { get; private set; }
-        //public IUserRoleRepository UserRoles { get; private set; }
+        
 
-        public async Task<int> CompleteAsync()
+        public async Task<int> CommitAsync()
         {
            return await _context.SaveChangesAsync();
         }

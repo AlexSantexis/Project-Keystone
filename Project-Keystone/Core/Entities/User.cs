@@ -11,13 +11,14 @@ namespace Project_Keystone.Core.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-        public virtual ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
-
         public virtual ICollection<Order> Orders { get; set; } = new HashSet<Order>();
         public virtual Basket? Basket { get; set; } 
         public virtual Wishlist? Wishlist { get; set; }
 
         public virtual Address? Address { get; set; }
-       
+
+        public string? RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Project_Keystone.Infrastructure.Repositories.Interfaces
+namespace Project_Keystone.Core.Interfaces
 {
     public interface IBaseRepository<T> where T : class
     {

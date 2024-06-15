@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Project_Keystone.Filters;
+using Project_Keystone.Core.Filters;
 
 namespace Project_Keystone.Infrastructure.Configurations
 {
     public static class SwaggerConfiguration
     {
-        public static void AddSwaggerConfiguration(this IServiceCollection services)
+        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
         {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
@@ -25,6 +25,7 @@ namespace Project_Keystone.Infrastructure.Configurations
                         BearerFormat = "JWT"
                     });
             });
+            return services;
         }
     }
 }

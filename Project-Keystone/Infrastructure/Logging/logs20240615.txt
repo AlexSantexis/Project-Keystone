@@ -1,0 +1,332 @@
+[15-06-2024 20:19:59089 +03:00 Microsoft.EntityFrameworkCore.Model ] The property '"IdentityRole"."ConcurrencyStamp"' was first mapped explicitly and then ignored. Consider not mapping the property in the first place.
+[15-06-2024 20:19:59203 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"TotalAmount"' on entity type '"Order"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:19:59204 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:19:59204 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Total"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:19:59205 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:19:59673 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("26"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:19:59719 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:19:59791 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[15-06-2024 20:19:59916 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[15-06-2024 20:19:59916 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[15-06-2024 20:19:59918 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[15-06-2024 20:19:59918 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[15-06-2024 20:19:59918 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[15-06-2024 20:20:00709 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[15-06-2024 20:20:00833 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 127.7817ms
+[15-06-2024 20:20:00864 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - null null
+[15-06-2024 20:20:00864 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[15-06-2024 20:20:00864 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[15-06-2024 20:20:00879 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 15.2652ms
+[15-06-2024 20:20:00882 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+[15-06-2024 20:20:00883 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - 499 152034 "text/css" 19.0591ms
+[15-06-2024 20:20:00898 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 34.2335ms
+[15-06-2024 20:20:00926 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - null null
+[15-06-2024 20:20:00928 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"'
+[15-06-2024 20:20:00929 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - 499 665 "image/png" 3.0047ms
+[15-06-2024 20:20:00955 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[15-06-2024 20:20:01017 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 62.4857ms
+[15-06-2024 20:20:03887 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - "application/json" 118
+[15-06-2024 20:20:03896 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:20:03908 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Register\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Project_Keystone.Api.Models.DTOs.UserRegisterDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[15-06-2024 20:20:04101 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:20:04105 +03:00 Project_Keystone.Core.Services.AuthService ] User registration failed for "user@example.com": "InvalidUserName: Username '' is invalid, can only contain letters or digits."
+[15-06-2024 20:20:04106 +03:00 Project_Keystone.Api.Controllers.AuthController ] User registration failed for "user@example.com"
+[15-06-2024 20:20:04112 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "BadRequestObjectResult", writing value of type '"System.String"'.
+[15-06-2024 20:20:04116 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)" in 204.8004ms
+[15-06-2024 20:20:04117 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:20:04120 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - 400 null "text/plain; charset=utf-8" 233.1509ms
+[15-06-2024 20:20:59119 +03:00 Microsoft.EntityFrameworkCore.Model ] The property '"IdentityRole"."ConcurrencyStamp"' was first mapped explicitly and then ignored. Consider not mapping the property in the first place.
+[15-06-2024 20:20:59236 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"TotalAmount"' on entity type '"Order"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:20:59237 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:20:59237 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Total"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:20:59237 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:20:59708 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("26"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:20:59754 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:20:59829 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[15-06-2024 20:20:59930 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[15-06-2024 20:20:59931 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[15-06-2024 20:20:59932 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[15-06-2024 20:20:59933 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[15-06-2024 20:20:59933 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[15-06-2024 20:21:00726 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[15-06-2024 20:21:00855 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 131.9687ms
+[15-06-2024 20:21:00887 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - null null
+[15-06-2024 20:21:00887 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[15-06-2024 20:21:00887 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[15-06-2024 20:21:00900 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 12.4653ms
+[15-06-2024 20:21:00904 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+[15-06-2024 20:21:00905 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - 499 152034 "text/css" 17.4162ms
+[15-06-2024 20:21:00922 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 34.395ms
+[15-06-2024 20:21:00948 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - null null
+[15-06-2024 20:21:00951 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"'
+[15-06-2024 20:21:00951 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - 499 665 "image/png" 2.9416ms
+[15-06-2024 20:21:00982 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[15-06-2024 20:21:01043 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 61.0501ms
+[15-06-2024 20:21:05766 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - "application/json" 159
+[15-06-2024 20:21:05777 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:21:05789 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Register\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Project_Keystone.Api.Models.DTOs.UserRegisterDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[15-06-2024 20:21:05982 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("2"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[15-06-2024 20:21:05992 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:21:06094 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [USERS] ([CONCURRENCY_STAMP], [CREATED_AT], [EMAIL], [FIRSTNAME], [LASTNAME], [NormalizedEmail], [NORMALIZED_USER_NAME], [PASSWORD_HASH], [RefreshToken], [RefreshTokenExpiryTime], [UPDATED_AT], [UserName])
+OUTPUT INSERTED.[USER_ID]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);"
+[15-06-2024 20:21:06116 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0"
+[15-06-2024 20:21:06139 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[UserId], [u].[RoleId]
+FROM [USER_ROLES] AS [u]
+WHERE [u].[UserId] = @__p_0 AND [u].[RoleId] = @__p_1"
+[15-06-2024 20:21:06142 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0"
+[15-06-2024 20:21:06153 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[15-06-2024 20:21:06158 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:21:06182 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@p12='?' (DbType = Int32), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256), @p14='?' (DbType = Int32), @p15='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [USER_ID] = @p12 AND [CONCURRENCY_STAMP] = @p13;
+INSERT INTO [USER_ROLES] ([RoleId], [UserId])
+VALUES (@p14, @p15);"
+[15-06-2024 20:21:06189 +03:00 Project_Keystone.Core.Services.AuthService ] User "user@example.com" registered successfully.
+[15-06-2024 20:21:06190 +03:00 Project_Keystone.Api.Controllers.AuthController ] User "user@example.com" registered successfully
+[15-06-2024 20:21:06194 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"System.String"'.
+[15-06-2024 20:21:06198 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)" in 405.8583ms
+[15-06-2024 20:21:06199 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:21:06202 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - 200 null "text/plain; charset=utf-8" 435.8956ms
+[15-06-2024 20:21:37707 +03:00 Microsoft.EntityFrameworkCore.Model ] The property '"IdentityRole"."ConcurrencyStamp"' was first mapped explicitly and then ignored. Consider not mapping the property in the first place.
+[15-06-2024 20:21:37831 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"TotalAmount"' on entity type '"Order"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:21:37832 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:21:37832 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Total"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:21:37833 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:21:38262 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("26"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:21:38309 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:21:38387 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[15-06-2024 20:21:38502 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[15-06-2024 20:21:38503 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[15-06-2024 20:21:38504 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[15-06-2024 20:21:38505 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[15-06-2024 20:21:38505 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[15-06-2024 20:21:39552 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[15-06-2024 20:21:39681 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 131.3345ms
+[15-06-2024 20:21:39709 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[15-06-2024 20:21:39709 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - null null
+[15-06-2024 20:21:39710 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[15-06-2024 20:21:39719 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 9.4003ms
+[15-06-2024 20:21:39724 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+[15-06-2024 20:21:39725 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - 499 152034 "text/css" 15.2806ms
+[15-06-2024 20:21:39741 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 31.9306ms
+[15-06-2024 20:21:39769 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - null null
+[15-06-2024 20:21:39771 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"'
+[15-06-2024 20:21:39772 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - 499 665 "image/png" 2.6117ms
+[15-06-2024 20:21:39801 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[15-06-2024 20:21:39863 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 62.0157ms
+[15-06-2024 20:22:17372 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - "application/json" 152
+[15-06-2024 20:22:17382 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:22:17393 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Register\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Project_Keystone.Api.Models.DTOs.UserRegisterDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[15-06-2024 20:22:17588 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[15-06-2024 20:22:17625 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:22:17629 +03:00 Project_Keystone.Core.Services.AuthService ] User registration failed for "alex.santexis@gmail.com": "DuplicateUserName: Username 'string' is already taken."
+[15-06-2024 20:22:17629 +03:00 Project_Keystone.Api.Controllers.AuthController ] User registration failed for "alex.santexis@gmail.com"
+[15-06-2024 20:22:17633 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "BadRequestObjectResult", writing value of type '"System.String"'.
+[15-06-2024 20:22:17637 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)" in 241.4378ms
+[15-06-2024 20:22:17638 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:22:17641 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - 400 null "text/plain; charset=utf-8" 269.2304ms
+[15-06-2024 20:24:30367 +03:00 Microsoft.EntityFrameworkCore.Model ] The property '"IdentityRole"."ConcurrencyStamp"' was first mapped explicitly and then ignored. Consider not mapping the property in the first place.
+[15-06-2024 20:24:30486 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"TotalAmount"' on entity type '"Order"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:24:30487 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:24:30487 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Total"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:24:30488 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:24:30905 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("26"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:24:30950 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:24:31026 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[15-06-2024 20:24:31132 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[15-06-2024 20:24:31132 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[15-06-2024 20:24:31134 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[15-06-2024 20:24:31134 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[15-06-2024 20:24:31134 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[15-06-2024 20:24:32005 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[15-06-2024 20:24:32130 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 129.2856ms
+[15-06-2024 20:24:32161 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - null null
+[15-06-2024 20:24:32161 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[15-06-2024 20:24:32161 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[15-06-2024 20:24:32195 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 33.7132ms
+[15-06-2024 20:24:32197 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+[15-06-2024 20:24:32197 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - 499 152034 "text/css" 36.6874ms
+[15-06-2024 20:24:32214 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 52.7514ms
+[15-06-2024 20:24:32220 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - null null
+[15-06-2024 20:24:32222 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"'
+[15-06-2024 20:24:32222 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - 499 665 "image/png" 2.6146ms
+[15-06-2024 20:24:32251 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[15-06-2024 20:24:32315 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 63.4386ms
+[15-06-2024 20:24:55002 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - "application/json" 196
+[15-06-2024 20:24:55012 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:24:55022 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Register\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Project_Keystone.Api.Models.DTOs.UserRegisterDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[15-06-2024 20:24:55133 +03:00 Project_Keystone.Core.Services.AuthService ] An error occurred while registering user "alex.santexis@gmail.com"
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UserRegisterDTO -> User
+Project_Keystone.Api.Models.DTOs.UserRegisterDTO -> Project_Keystone.Core.Entities.User
+   at lambda_method59(Closure, Object, User, ResolutionContext)
+   at Project_Keystone.Core.Services.AuthService.RegisterUserAsync(UserRegisterDTO registerDTO) in C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone\Core\Services\AuthService.cs:line 37
+[15-06-2024 20:24:55172 +03:00 Project_Keystone.Api.Controllers.AuthController ] An error occurred while registering user "alex.santexis@gmail.com"
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UserRegisterDTO -> User
+Project_Keystone.Api.Models.DTOs.UserRegisterDTO -> Project_Keystone.Core.Entities.User
+   at lambda_method59(Closure, Object, User, ResolutionContext)
+   at Project_Keystone.Core.Services.AuthService.RegisterUserAsync(UserRegisterDTO registerDTO) in C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone\Core\Services\AuthService.cs:line 37
+   at Project_Keystone.Api.Controllers.AuthController.Register(UserRegisterDTO registerDTO) in C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone\Api\Controllers\AuthController.cs:line 30
+[15-06-2024 20:24:55176 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "ObjectResult", writing value of type '"System.String"'.
+[15-06-2024 20:24:55184 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)" in 154.4524ms
+[15-06-2024 20:24:55184 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:24:55186 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - 500 null "text/plain; charset=utf-8" 183.3658ms
+[15-06-2024 20:27:23555 +03:00 Microsoft.EntityFrameworkCore.Model ] The property '"IdentityRole"."ConcurrencyStamp"' was first mapped explicitly and then ignored. Consider not mapping the property in the first place.
+[15-06-2024 20:27:23675 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"TotalAmount"' on entity type '"Order"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:27:23675 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:27:23676 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Total"' on entity type '"OrderDetail"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:27:23676 +03:00 Microsoft.EntityFrameworkCore.Model.Validation ] No store type was specified for the decimal property '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[15-06-2024 20:27:24101 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("26"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:27:24146 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0"
+[15-06-2024 20:27:24220 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[15-06-2024 20:27:24328 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[15-06-2024 20:27:24328 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[15-06-2024 20:27:24329 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[15-06-2024 20:27:24330 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[15-06-2024 20:27:24330 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[15-06-2024 20:27:25292 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[15-06-2024 20:27:25419 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 130.4664ms
+[15-06-2024 20:27:25447 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[15-06-2024 20:27:25447 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[15-06-2024 20:27:25447 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - null null
+[15-06-2024 20:27:25488 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 41.1187ms
+[15-06-2024 20:27:25492 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+[15-06-2024 20:27:25493 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/swagger-ui.css""" - 499 152034 "text/css" 46.7591ms
+[15-06-2024 20:27:25509 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 61.9597ms
+[15-06-2024 20:27:25517 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - null null
+[15-06-2024 20:27:25519 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"'
+[15-06-2024 20:27:25519 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - 499 665 "image/png" 2.6086ms
+[15-06-2024 20:27:25549 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[15-06-2024 20:27:25612 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 63.6318ms
+[15-06-2024 20:27:28982 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - "application/json" 193
+[15-06-2024 20:27:28993 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:27:29004 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Register\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(Project_Keystone.Api.Models.DTOs.UserRegisterDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[15-06-2024 20:27:29211 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[15-06-2024 20:27:29221 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:27:29321 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [USERS] ([CONCURRENCY_STAMP], [CREATED_AT], [EMAIL], [FIRSTNAME], [LASTNAME], [NormalizedEmail], [NORMALIZED_USER_NAME], [PASSWORD_HASH], [RefreshToken], [RefreshTokenExpiryTime], [UPDATED_AT], [UserName])
+OUTPUT INSERTED.[USER_ID]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);"
+[15-06-2024 20:27:29343 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0"
+[15-06-2024 20:27:29366 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[UserId], [u].[RoleId]
+FROM [USER_ROLES] AS [u]
+WHERE [u].[UserId] = @__p_0 AND [u].[RoleId] = @__p_1"
+[15-06-2024 20:27:29369 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[Name], [r].[NormalizedName]
+FROM [ROLES] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0"
+[15-06-2024 20:27:29379 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[15-06-2024 20:27:29383 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:27:29404 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p12='?' (DbType = Int32), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256), @p14='?' (DbType = Int32), @p15='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [USER_ID] = @p12 AND [CONCURRENCY_STAMP] = @p13;
+INSERT INTO [USER_ROLES] ([RoleId], [UserId])
+VALUES (@p14, @p15);"
+[15-06-2024 20:27:29412 +03:00 Project_Keystone.Core.Services.AuthService ] User "user@example.com" registered successfully.
+[15-06-2024 20:27:29412 +03:00 Project_Keystone.Api.Controllers.AuthController ] User "user@example.com" registered successfully
+[15-06-2024 20:27:29416 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"System.String"'.
+[15-06-2024 20:27:29420 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)" in 412.7982ms
+[15-06-2024 20:27:29420 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Register (Project-Keystone)"'
+[15-06-2024 20:27:29424 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/register""" - 200 null "text/plain; charset=utf-8" 441.4564ms
+[15-06-2024 20:27:48737 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/login""" - "application/json" 144
+[15-06-2024 20:27:48739 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)"'
+[15-06-2024 20:27:48742 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Project_Keystone.Api.Models.DTOs.UserLoginDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[15-06-2024 20:27:48758 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[USER_ID], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[15-06-2024 20:27:48852 +03:00 Project_Keystone.Core.Services.AuthService ] User "user@example.com" logged in successfully.
+[15-06-2024 20:27:48852 +03:00 Project_Keystone.Api.Controllers.AuthController ] User "user@example.com" logged in successfully
+[15-06-2024 20:27:48853 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[15-06-2024 20:27:48856 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)" in 113.8295ms
+[15-06-2024 20:27:48857 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)"'
+[15-06-2024 20:27:48858 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/Auth/login""" - 200 null "application/json; charset=utf-8" 121.4488ms

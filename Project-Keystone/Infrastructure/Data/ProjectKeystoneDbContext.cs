@@ -1,25 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Project_Keystone.Core.Entities;
+using System.Data;
 
 namespace Project_Keystone.Infrastructure.Data
 {
-    public class ProjectKeystoneDbContext : DbContext
+    public class ProjectKeystoneDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public ProjectKeystoneDbContext(DbContextOptions<ProjectKeystoneDbContext> options) : base(options)
         {
         }
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
+        
         public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<BasketItem> BasketItems { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+
 
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
+        
         public virtual DbSet<Wishlist> Wishlist { get; set; }
         public virtual DbSet<WishlistItem> WishlistItem { get; set; }
 
@@ -31,12 +34,14 @@ namespace Project_Keystone.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("USERS");
                 entity.HasIndex(e => e.Lastname, "IX_LASTNAME");
                 entity.HasIndex(e => e.Email, "UQ_EMAIL").IsUnique();
-                entity.Property(e => e.UserName).HasMaxLength(20).HasColumnName("USERNAME");
                 entity.Property(e => e.Id).HasColumnName("USER_ID");
                 entity.Property(e => e.Firstname).HasColumnName("FIRSTNAME");
                 entity.Property(e => e.Lastname).HasColumnName("LASTNAME");
@@ -47,37 +52,60 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.HasOne(u => u.Address)
                 .WithOne(a => a.User)
                 .HasForeignKey<Address>(a => a.UserId);
+                entity.Property(e => e.NormalizedUserName).HasColumnName("NORMALIZED_USER_NAME");
+                entity.Property(e => e.ConcurrencyStamp).HasColumnName("CONCURRENCY_STAMP");
+
 
                 entity.Ignore(e => e.EmailConfirmed);
                 entity.Ignore(e => e.TwoFactorEnabled);
                 entity.Ignore(e => e.LockoutEnd);
                 entity.Ignore(e => e.LockoutEnabled);
                 entity.Ignore(e => e.PhoneNumberConfirmed);
-                entity.Ignore(e => e.ConcurrencyStamp);
                 entity.Ignore(e => e.SecurityStamp);
-                entity.Ignore(e => e.NormalizedEmail);
-                entity.Ignore(e => e.NormalizedUserName);
+                
                 entity.Ignore(e => e.AccessFailedCount);
                 entity.Ignore(e => e.PhoneNumber);
-                entity.Ignore(e => e.UserName);
+                
             });
 
-            modelBuilder.Entity<Role>(entity =>
+            modelBuilder.Entity<IdentityRole<int>>(entity =>
             {
-                entity.ToTable("ROLES");
-                entity.Property(e => e.Id).HasColumnName("ROLE_ID");
-                entity.Property(e => e.Name).HasMaxLength(20).HasColumnName("ROLE_NAME");
-
-                entity.Ignore(e => e.NormalizedName);
-                entity.Ignore(e => e.ConcurrencyStamp);
+                entity.ToTable("ROLES");               
+                entity.Ignore(r => r.ConcurrencyStamp);
+                
             });
 
-            modelBuilder.Entity<UserRole>(entity =>
+            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
             {
                 entity.ToTable("USER_ROLES");
-                entity.HasKey(ur => new { ur.UserId,ur.RoleId });
-                entity.HasOne(ur => ur.User).WithMany(u => u.UserRoles).HasForeignKey(ur => ur.UserId);
-                entity.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(ur => ur.RoleId);
+            });
+
+            // Configuration for IdentityUserLogin<int>
+            modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
+            {
+                entity.HasKey(login => new { login.LoginProvider, login.ProviderKey });
+                entity.ToTable("USER_LOGINS");
+            });
+
+            // Configuration for IdentityUserToken<int>
+            modelBuilder.Entity<IdentityUserToken<int>>(entity =>
+            {
+                entity.HasKey(token => new { token.UserId, token.LoginProvider, token.Name });
+                entity.ToTable("USER_TOKENS");
+            });
+
+            // Configuration for IdentityUserClaim<int>
+            modelBuilder.Entity<IdentityUserClaim<int>>(entity =>
+            {
+                entity.HasKey(claim => claim.Id);
+                entity.ToTable("USER_CLAIMS");
+            });
+
+            // Configuration for IdentityRoleClaim<int>
+            modelBuilder.Entity<IdentityRoleClaim<int>>(entity =>
+            {
+                entity.HasKey(claim => claim.Id);
+                entity.ToTable("ROLE_CLAIMS");
             });
 
             modelBuilder.Entity<Basket>(entity =>
