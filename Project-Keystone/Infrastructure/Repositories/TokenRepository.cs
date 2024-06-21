@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Project_Keystone.Core.Entities;
-using Project_Keystone.Core.Interfaces;
+using Project_Keystone.Infrastructure.Repositories.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

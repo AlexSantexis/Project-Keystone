@@ -1,4 +1,4 @@
-﻿namespace Project_Keystone.Core.Interfaces
+﻿namespace Project_Keystone.Infrastructure.Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -6,7 +6,7 @@
         ICategoryRepository Categories { get; }
         IOrderRepository Orders { get; }
         IProductRepository Products { get; }
-        
+
         IWishListRepository Wishlists { get; }
         IGenreRepository Genres { get; }
         IOrderDetailRepository OrderDetails { get; }

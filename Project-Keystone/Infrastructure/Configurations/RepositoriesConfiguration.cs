@@ -1,5 +1,5 @@
 ﻿using Project_Keystone.Infrastructure.Repositories;
-using Project_Keystone.Core.Interfaces;
+using Project_Keystone.Infrastructure.Repositories.Interfaces;
 
 namespace Project_Keystone.Infrastructure.Configurations
 {

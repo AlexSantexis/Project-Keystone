@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
-using Project_Keystone.Core.Interfaces;
 using System.Data;
+using Project_Keystone.Infrastructure.Repositories.Interfaces;
 
 namespace Project_Keystone.Infrastructure.Repositories
 {

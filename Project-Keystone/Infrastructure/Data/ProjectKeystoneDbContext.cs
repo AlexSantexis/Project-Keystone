@@ -161,9 +161,9 @@ namespace Project_Keystone.Infrastructure.Data
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.ToTable("CATEGORIES");
-                entity.HasIndex(e => e.Name);
+                entity.HasIndex(e => e.Name).IsUnique();
                 entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
-                entity.Property(e => e.Name).HasMaxLength(50).HasColumnName("NAME");
+                entity.Property(e => e.Name).HasMaxLength(50).HasColumnName("NAME").IsRequired();
             });
 
             modelBuilder.Entity<Order>(entity =>

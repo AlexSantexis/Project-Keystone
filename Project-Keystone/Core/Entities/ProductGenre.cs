@@ -3,8 +3,8 @@
     public class ProductGenre
     {
         public int ProductId { get; set; }
-        public Product product { get; set; } = null!;
+        public virtual Product product { get; set; } = null!;
         public int GenreId { get; set; }
-        public Genre genre { get; set; } = null!;
+        public virtual Genre genre { get; set; } = null!;
     }
 }

@@ -4,12 +4,13 @@ using Project_Keystone.Api.Models.DTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Project_Keystone.Core.Entities;
-using Project_Keystone.Core.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Project_Keystone.Infrastructure.Repositories.Interfaces;
+using Project_Keystone.Core.Services.Interfaces;
 
 namespace Project_Keystone.Core.Services
 {

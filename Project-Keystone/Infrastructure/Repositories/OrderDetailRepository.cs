@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
-using Project_Keystone.Core.Interfaces;
+using Project_Keystone.Infrastructure.Repositories.Interfaces;
 
 namespace Project_Keystone.Infrastructure.Repositories
 {
