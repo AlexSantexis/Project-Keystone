@@ -58,11 +58,11 @@ namespace Project_Keystone.Infrastructure.Repositories
             return product;
         }
 
-        public async Task<bool> UpdateProductImageUrlAsync(int productId, string imageUrl)
+        public async Task<bool> UpdateProductImageAsync(int productId, byte[] imageData)
         {
            var product = await _context.Products.FindAsync(productId);
             if (product == null) return false;
-            product.ImageUrl = imageUrl;
+            product.ImageData = imageData;
             await _context.SaveChangesAsync();
             return true;
         }

@@ -25,7 +25,7 @@ namespace Project_Keystone.Infrastructure.Repositories
             }
         }
 
-        public async Task<Basket?> GetBasketByUserIdAsync(int userId)
+        public async Task<Basket?> GetBasketByUserIdAsync(string userId)
         {
             return await _context.Baskets
                  .Include(b => b.BasketItems)

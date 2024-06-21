@@ -1,0 +1,743 @@
+[21-06-2024 16:14:41639 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[21-06-2024 16:14:42017 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[21-06-2024 16:14:42017 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[21-06-2024 16:14:42018 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[21-06-2024 16:14:42019 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[21-06-2024 16:14:42019 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[21-06-2024 16:14:42207 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:14:42240 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:14:42243 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 39.8531ms
+[21-06-2024 16:14:42245 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:14:42251 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:14:42373 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2024 8:49:24 PM', Current time (UTC): '6/21/2024 1:14:42 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+[21-06-2024 16:14:42403 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] "Bearer" was not authenticated. Failure message: "IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2024 8:49:24 PM', Current time (UTC): '6/21/2024 1:14:42 PM'."
+[21-06-2024 16:14:42408 +03:00 Microsoft.AspNetCore.Authorization.DefaultAuthorizationService ] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+[21-06-2024 16:14:42412 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] AuthenticationScheme: "Bearer" was challenged.
+[21-06-2024 16:14:42413 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 401 0 null 168.1297ms
+[21-06-2024 16:14:42450 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[21-06-2024 16:14:42588 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 137.7667ms
+[21-06-2024 16:14:42604 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[21-06-2024 16:14:42608 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 4.1862ms
+[21-06-2024 16:14:42613 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[21-06-2024 16:14:42646 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 32.7898ms
+[21-06-2024 16:14:42663 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - null null
+[21-06-2024 16:14:42669 +03:00 Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware ] Sending file. Request path: '"/favicon-16x16.png"'. Physical path: '"N/A"'
+[21-06-2024 16:14:42670 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/favicon-16x16.png""" - 499 665 "image/png" 7.0564ms
+[21-06-2024 16:14:42692 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[21-06-2024 16:14:42760 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 68.4596ms
+[21-06-2024 16:14:45877 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:14:45878 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:14:45882 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2024 8:49:24 PM', Current time (UTC): '6/21/2024 1:14:45 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+[21-06-2024 16:14:45883 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] "Bearer" was not authenticated. Failure message: "IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2024 8:49:24 PM', Current time (UTC): '6/21/2024 1:14:45 PM'."
+[21-06-2024 16:14:45884 +03:00 Microsoft.AspNetCore.Authorization.DefaultAuthorizationService ] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+[21-06-2024 16:14:45884 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] AuthenticationScheme: "Bearer" was challenged.
+[21-06-2024 16:14:45884 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 401 0 null 7.6083ms
+[21-06-2024 16:14:51211 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:14:51212 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:14:51212 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.5698ms
+[21-06-2024 16:14:51213 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:14:51214 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:14:51215 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2024 8:49:24 PM', Current time (UTC): '6/21/2024 1:14:51 PM'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+[21-06-2024 16:14:51216 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] "Bearer" was not authenticated. Failure message: "IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2024 8:49:24 PM', Current time (UTC): '6/21/2024 1:14:51 PM'."
+[21-06-2024 16:14:51217 +03:00 Microsoft.AspNetCore.Authorization.DefaultAuthorizationService ] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+[21-06-2024 16:14:51217 +03:00 Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler ] AuthenticationScheme: "Bearer" was challenged.
+[21-06-2024 16:14:51218 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 401 0 null 4.7274ms
+[21-06-2024 16:15:14198 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/login""" - null null
+[21-06-2024 16:15:14199 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:14199 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/login""" - 204 null null 1.434ms
+[21-06-2024 16:15:14200 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/login""" - "application/json" 57
+[21-06-2024 16:15:14201 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:14203 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)"'
+[21-06-2024 16:15:14219 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Project_Keystone.Api.Models.DTOs.UserLoginDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:15:15591 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("30"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:15:15606 +03:00 Project_Keystone.Core.Services.AuthService ] Login failed for "user@example.com"
+[21-06-2024 16:15:15633 +03:00 Project_Keystone.Core.Services.AuthService ] An error occurred while logging in user "user@example.com"
+System.Exception: Login failed. Invalid email or password.
+   at Project_Keystone.Core.Services.AuthService.LoginUserAsync(UserLoginDTO loginDTO) in C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone\Core\Services\AuthService.cs:line 74
+[21-06-2024 16:15:15671 +03:00 Project_Keystone.Api.Controllers.AuthController ] An error occurred while logging in user "user@example.com"
+System.Exception: Login failed. Invalid email or password.
+   at Project_Keystone.Core.Services.AuthService.LoginUserAsync(UserLoginDTO loginDTO) in C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone\Core\Services\AuthService.cs:line 74
+   at Project_Keystone.Api.Controllers.AuthController.Login(UserLoginDTO loginDTO) in C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone\Api\Controllers\AuthController.cs:line 61
+[21-06-2024 16:15:15676 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "ObjectResult", writing value of type '"System.String"'.
+[21-06-2024 16:15:15679 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)" in 1457.5501ms
+[21-06-2024 16:15:15680 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)"'
+[21-06-2024 16:15:15684 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/login""" - 500 null "text/plain; charset=utf-8" 1484.3408ms
+[21-06-2024 16:15:30567 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/login""" - null null
+[21-06-2024 16:15:30568 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:30568 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/login""" - 204 null null 1.6523ms
+[21-06-2024 16:15:30569 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/login""" - "application/json" 64
+[21-06-2024 16:15:30570 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:30570 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)"'
+[21-06-2024 16:15:30571 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"Login\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Project_Keystone.Api.Models.DTOs.UserLoginDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:15:30616 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("4"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:15:30756 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:15:30761 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:15:30824 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:15:30859 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:15:30866 +03:00 Project_Keystone.Core.Services.AuthService ] User "alex.santexis@gmail.com" logged in successfully.
+[21-06-2024 16:15:30866 +03:00 Project_Keystone.Api.Controllers.AuthController ] User "alex.santexis@gmail.com" logged in successfully
+[21-06-2024 16:15:30867 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:15:30871 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)" in 299.0445ms
+[21-06-2024 16:15:30871 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.Login (Project-Keystone)"'
+[21-06-2024 16:15:30871 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/login""" - 200 null "application/json; charset=utf-8" 302.3788ms
+[21-06-2024 16:15:34038 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:15:34039 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:34040 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.4ms
+[21-06-2024 16:15:34040 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:15:34042 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:34047 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:15:34050 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:15:34088 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:15:34093 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:15:34100 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 49.934ms
+[21-06-2024 16:15:34101 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:15:34101 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 60.8377ms
+[21-06-2024 16:15:45344 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:15:45345 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:45345 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.6057ms
+[21-06-2024 16:15:45346 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:15:45347 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:15:45348 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:15:45348 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:15:45352 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:15:45354 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:15:45354 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 5.5469ms
+[21-06-2024 16:15:45355 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:15:45355 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 9.0878ms
+[21-06-2024 16:17:12648 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:17:12652 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:17:12652 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 4.3665ms
+[21-06-2024 16:17:12653 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:17:12657 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:17:12657 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:17:12657 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:17:12661 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:17:12662 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:17:12663 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 4.9623ms
+[21-06-2024 16:17:12663 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:17:12664 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 10.9324ms
+[21-06-2024 16:17:48611 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:17:48612 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:17:48613 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.4696ms
+[21-06-2024 16:17:48614 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:17:48615 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:17:48616 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:17:48616 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:17:48619 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:17:48621 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:17:48622 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 5.3975ms
+[21-06-2024 16:17:48622 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:17:48623 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 9.1903ms
+[21-06-2024 16:17:52526 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:17:52527 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:17:52528 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:17:52529 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:17:52533 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:17:52535 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:17:52535 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 6.0448ms
+[21-06-2024 16:17:52536 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:17:52536 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 10.6185ms
+[21-06-2024 16:18:10448 +03:00 Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager ] User profile is available. Using '"C:\Users\alexs\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+[21-06-2024 16:18:10596 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "https://localhost:7298"
+[21-06-2024 16:18:10597 +03:00 Microsoft.Hosting.Lifetime ] Now listening on: "http://localhost:5153"
+[21-06-2024 16:18:10598 +03:00 Microsoft.Hosting.Lifetime ] Application started. Press Ctrl+C to shut down.
+[21-06-2024 16:18:10599 +03:00 Microsoft.Hosting.Lifetime ] Hosting environment: "Development"
+[21-06-2024 16:18:10599 +03:00 Microsoft.Hosting.Lifetime ] Content root path: "C:\WorkSpace\NetApps\Project-Keystone\Project-Keystone"
+[21-06-2024 16:18:10865 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - null null
+[21-06-2024 16:18:10976 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 114.5048ms
+[21-06-2024 16:18:10995 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - null null
+[21-06-2024 16:18:10995 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - null null
+[21-06-2024 16:18:11007 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_framework/aspnetcore-browser-refresh.js""" - 200 13768 "application/javascript; charset=utf-8" 11.2154ms
+[21-06-2024 16:18:11023 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 27.7235ms
+[21-06-2024 16:18:11079 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - null null
+[21-06-2024 16:18:11149 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/swagger/v1/swagger.json""" - 200 null "application/json;charset=utf-8" 71.0171ms
+[21-06-2024 16:18:27397 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:18:27399 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:18:27400 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 3.9394ms
+[21-06-2024 16:18:27402 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 108
+[21-06-2024 16:18:27403 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:18:27487 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:18:27500 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:18:28153 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:18:28154 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:18:28500 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("27"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:18:28557 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:18:28574 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:18:28581 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:18:28640 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:18:28648 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:18:28674 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:18:28686 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:18:28692 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 1189.7164ms
+[21-06-2024 16:18:28693 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:18:28697 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 1295.9527ms
+[21-06-2024 16:19:37503 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:19:37508 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:19:37508 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 5.3734ms
+[21-06-2024 16:19:37509 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 104
+[21-06-2024 16:19:37510 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:19:37514 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:19:37515 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:19:37554 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:19:37555 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:19:37557 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:19:37558 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:19:37560 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:19:37562 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:19:37564 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:19:37565 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:19:37567 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:19:37568 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:19:37569 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 53.2295ms
+[21-06-2024 16:19:37570 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:19:37570 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 61.0789ms
+[21-06-2024 16:19:51731 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:19:51732 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:19:51733 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.5689ms
+[21-06-2024 16:19:51733 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:19:51735 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:19:51737 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:19:51740 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:19:51779 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:19:51783 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:19:51790 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 49.6924ms
+[21-06-2024 16:19:51791 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:19:51791 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 58.0811ms
+[21-06-2024 16:19:58789 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:19:58790 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:19:58790 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 1.5511ms
+[21-06-2024 16:19:58791 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 108
+[21-06-2024 16:19:58792 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:19:58793 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:19:58793 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:19:58795 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:19:58796 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:19:58798 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:19:58799 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:19:58801 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:19:58803 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:19:58805 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:19:58806 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:19:58807 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:19:58808 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:19:58809 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 14.9127ms
+[21-06-2024 16:19:58809 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:19:58809 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 18.2193ms
+[21-06-2024 16:21:43428 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:21:43430 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:21:43431 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 3.1923ms
+[21-06-2024 16:21:43433 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 108
+[21-06-2024 16:21:43435 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:21:43436 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:21:43436 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:21:43438 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:21:43438 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:21:43440 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:21:43441 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:21:43443 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:21:43444 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:21:43446 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:21:43447 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:21:43448 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:21:43449 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:21:43449 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 12.7409ms
+[21-06-2024 16:21:43450 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:21:43450 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 17.2609ms
+[21-06-2024 16:25:20560 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:25:20566 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:20566 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 6.606ms
+[21-06-2024 16:25:20567 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 108
+[21-06-2024 16:25:20568 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:20569 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:25:20569 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:25:20571 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:25:20571 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:25:20573 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:25:20574 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:25:20576 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:25:20578 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:25:20579 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:25:20580 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:25:20581 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:25:20582 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:25:20583 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 13.3177ms
+[21-06-2024 16:25:20583 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:25:20584 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 16.978ms
+[21-06-2024 16:25:41191 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:25:41194 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:41195 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 4.192ms
+[21-06-2024 16:25:41196 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:25:41197 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:41197 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:25:41198 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:25:41201 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:25:41203 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:25:41204 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 5.414ms
+[21-06-2024 16:25:41204 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:25:41205 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 9.1213ms
+[21-06-2024 16:25:45049 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:25:45050 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:45050 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 1.5479ms
+[21-06-2024 16:25:45051 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 108
+[21-06-2024 16:25:45052 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:45053 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:25:45053 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:25:45055 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:25:45055 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:25:45057 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:25:45058 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:25:45060 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:25:45061 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:25:45063 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:25:45064 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:25:45065 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:25:45066 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:25:45067 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 12.5922ms
+[21-06-2024 16:25:45067 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:25:45067 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 16.3969ms
+[21-06-2024 16:25:54196 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:25:54197 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:54198 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.4684ms
+[21-06-2024 16:25:54199 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:25:54200 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:25:54200 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:25:54201 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:25:54204 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:25:54205 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:25:54206 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 4.7096ms
+[21-06-2024 16:25:54206 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:25:54207 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 8.119ms
+[21-06-2024 16:26:14923 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:26:14927 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:14927 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 4.2284ms
+[21-06-2024 16:26:14930 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 104
+[21-06-2024 16:26:14932 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:14932 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:26:14933 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:26:14935 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:26:14935 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:26:14936 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:26:14937 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:26:14939 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:26:14941 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:26:14943 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:26:14944 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:26:14945 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:26:14946 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:26:14946 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 12.9792ms
+[21-06-2024 16:26:14947 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:26:14947 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 17.7522ms
+[21-06-2024 16:26:24225 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:24226 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:24227 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.4333ms
+[21-06-2024 16:26:24227 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:24229 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:24229 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:24230 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:26:24232 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:26:24234 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:26:24235 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 4.4455ms
+[21-06-2024 16:26:24235 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:24235 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 8.1262ms
+[21-06-2024 16:26:38769 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:38770 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:38771 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 2.1681ms
+[21-06-2024 16:26:38772 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:38773 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:38773 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:38774 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:26:38777 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:26:38780 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:26:38780 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 5.7633ms
+[21-06-2024 16:26:38781 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:38782 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 10.3217ms
+[21-06-2024 16:26:45490 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:45491 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:45492 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.5703ms
+[21-06-2024 16:26:45493 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:45494 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:45494 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:45495 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:26:45499 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:26:45502 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:26:45502 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 6.7073ms
+[21-06-2024 16:26:45503 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:45504 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 10.8724ms
+[21-06-2024 16:26:48410 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:26:48411 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:48411 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 1.391ms
+[21-06-2024 16:26:48412 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 108
+[21-06-2024 16:26:48413 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:48413 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:26:48414 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:26:48415 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:26:48416 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:26:48417 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:26:48419 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:26:48420 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:26:48422 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:26:48423 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:26:48424 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:26:48425 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:26:48426 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:26:48427 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 12.6364ms
+[21-06-2024 16:26:48427 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:26:48428 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 16.0898ms
+[21-06-2024 16:26:48438 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:26:48439 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:26:48439 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:48440 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:26:48443 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:26:48445 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:26:48446 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 5.354ms
+[21-06-2024 16:26:48446 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:26:48447 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 9.175ms
+[21-06-2024 16:29:14674 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - null null
+[21-06-2024 16:29:14675 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:29:14675 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/update""" - 204 null null 3.3498ms
+[21-06-2024 16:29:14677 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - "application/json" 100
+[21-06-2024 16:29:14680 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:29:14680 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:29:14681 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"UpdateUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUser(Project_Keystone.Api.Models.DTOs.UserUpdateDTO)" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:29:14683 +03:00 Project_Keystone.Api.Controllers.AuthController ] Authenticated user roles: "User"
+[21-06-2024 16:29:14684 +03:00 Project_Keystone.Core.Services.AuthService ] Attempting to update user with email "alex.santexis@gmail.com"
+[21-06-2024 16:29:14685 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:29:14687 +03:00 Project_Keystone.Core.Services.AuthService ] User found. Updating user details.
+[21-06-2024 16:29:14688 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NORMALIZED_USER_NAME] = @__normalizedUserName_0"
+[21-06-2024 16:29:14689 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0"
+[21-06-2024 16:29:14691 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@p12='?' (Size = 450), @p0='?' (Size = 4000), @p13='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 4000), @p4='?' (Size = 450), @p5='?' (Size = 256), @p6='?' (Size = 256), @p7='?' (Size = 512), @p8='?' (Size = 4000), @p9='?' (DbType = DateTime2), @p10='?' (DbType = DateTime2), @p11='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [USERS] SET [CONCURRENCY_STAMP] = @p0, [CREATED_AT] = @p1, [EMAIL] = @p2, [FIRSTNAME] = @p3, [LASTNAME] = @p4, [NormalizedEmail] = @p5, [NORMALIZED_USER_NAME] = @p6, [PASSWORD_HASH] = @p7, [RefreshToken] = @p8, [RefreshTokenExpiryTime] = @p9, [UPDATED_AT] = @p10, [UserName] = @p11
+OUTPUT 1
+WHERE [Id] = @p12 AND [CONCURRENCY_STAMP] = @p13;"
+[21-06-2024 16:29:14692 +03:00 Project_Keystone.Core.Services.AuthService ] User with email "alex.santexis@gmail.com" updated successfully
+[21-06-2024 16:29:14693 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Name]
+FROM [USER_ROLES] AS [u]
+INNER JOIN [ROLES] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0"
+[21-06-2024 16:29:14694 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"'.
+[21-06-2024 16:29:14694 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)" in 13.0557ms
+[21-06-2024 16:29:14695 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.UpdateUser (Project-Keystone)"'
+[21-06-2024 16:29:14695 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "POST" "https"://"localhost:7298""""/api/auth/update""" - 200 null "application/json; charset=utf-8" 19.2183ms
+[21-06-2024 16:29:14706 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:29:14706 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:29:14707 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.4053ms
+[21-06-2024 16:29:14708 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:29:14709 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:29:14709 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:29:14710 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:29:14712 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:29:14714 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:29:14715 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 4.3848ms
+[21-06-2024 16:29:14715 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:29:14716 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 7.8566ms
+[21-06-2024 16:29:21824 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:29:21825 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:29:21825 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 1.3949ms
+[21-06-2024 16:29:21826 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:29:21827 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:29:21827 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:29:21828 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:29:21830 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:29:21832 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:29:21833 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 4.5422ms
+[21-06-2024 16:29:21833 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:29:21834 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 8.0573ms
+[21-06-2024 16:30:02295 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:30:02298 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:30:02299 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "OPTIONS" "https"://"localhost:7298""""/api/auth/me""" - 204 null null 3.8978ms
+[21-06-2024 16:30:02300 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request starting "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - null null
+[21-06-2024 16:30:02301 +03:00 Microsoft.AspNetCore.Cors.Infrastructure.CorsService ] CORS policy execution successful.
+[21-06-2024 16:30:02301 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executing endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:30:02301 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrentUser()" on controller "Project_Keystone.Api.Controllers.AuthController" ("Project-Keystone").
+[21-06-2024 16:30:02304 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[CONCURRENCY_STAMP], [u].[CREATED_AT], [u].[EMAIL], [u].[FIRSTNAME], [u].[LASTNAME], [u].[NormalizedEmail], [u].[NORMALIZED_USER_NAME], [u].[PASSWORD_HASH], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[UPDATED_AT], [u].[UserName]
+FROM [USERS] AS [u]
+WHERE [u].[Id] = @__p_0"
+[21-06-2024 16:30:02306 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor ] Executing "OkObjectResult", writing value of type '"Project_Keystone.Api.Models.DTOs.UserDTO"'.
+[21-06-2024 16:30:02306 +03:00 Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker ] Executed action "Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)" in 4.4385ms
+[21-06-2024 16:30:02307 +03:00 Microsoft.AspNetCore.Routing.EndpointMiddleware ] Executed endpoint '"Project_Keystone.Api.Controllers.AuthController.GetCurrentUser (Project-Keystone)"'
+[21-06-2024 16:30:02307 +03:00 Microsoft.AspNetCore.Hosting.Diagnostics ] Request finished "HTTP/2" "GET" "https"://"localhost:7298""""/api/auth/me""" - 200 null "application/json; charset=utf-8" 7.7773ms
+[21-06-2024 19:59:12380 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+[21-06-2024 19:59:12417 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+[21-06-2024 19:59:12418 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+[21-06-2024 19:59:12419 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+[21-06-2024 19:59:12426 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+[21-06-2024 19:59:12433 +03:00 Microsoft.EntityFrameworkCore.Migrations ] Applying migration '"20240621165903_ChangesToTables"'.
+[21-06-2024 19:59:12493 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PRODUCTS]') AND [c].[name] = N'IMAGE_URL');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [PRODUCTS] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [PRODUCTS] DROP COLUMN [IMAGE_URL];"
+[21-06-2024 19:59:12494 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [PRODUCTS] ADD [IMAGE_DATA] varbinary(max) NULL;"
+[21-06-2024 19:59:12501 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'CATEGORY_ID', N'NAME') AND [object_id] = OBJECT_ID(N'[CATEGORIES]'))
+    SET IDENTITY_INSERT [CATEGORIES] ON;
+INSERT INTO [CATEGORIES] ([CATEGORY_ID], [NAME])
+VALUES (1, N'PC'),
+(2, N'PSN'),
+(3, N'Xbox'),
+(4, N'Nintendo');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'CATEGORY_ID', N'NAME') AND [object_id] = OBJECT_ID(N'[CATEGORIES]'))
+    SET IDENTITY_INSERT [CATEGORIES] OFF;"
+[21-06-2024 19:59:12506 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'GENRE_ID', N'NAME') AND [object_id] = OBJECT_ID(N'[GENRES]'))
+    SET IDENTITY_INSERT [GENRES] ON;
+INSERT INTO [GENRES] ([GENRE_ID], [NAME])
+VALUES (1, N'Action'),
+(2, N'Adventure'),
+(3, N'Singleplayer'),
+(4, N'Strategy'),
+(5, N'Multiplayer');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'GENRE_ID', N'NAME') AND [object_id] = OBJECT_ID(N'[GENRES]'))
+    SET IDENTITY_INSERT [GENRES] OFF;"
+[21-06-2024 19:59:12507 +03:00 Microsoft.EntityFrameworkCore.Database.Command ] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240621165903_ChangesToTables', N'8.0.5');"

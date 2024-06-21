@@ -9,7 +9,7 @@ namespace Project_Keystone.Infrastructure.Configurations
     {
         public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole<int>>(options =>
+            services.AddIdentity<User,IdentityRole<string>>(options =>
             {
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
@@ -19,11 +19,15 @@ namespace Project_Keystone.Infrastructure.Configurations
 
                 options.User.RequireUniqueEmail = true;
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+
             })
             .AddEntityFrameworkStores<ProjectKeystoneDbContext>()
             .AddDefaultTokenProviders();
+
+
             return services;
         }
+       
     }
 
     

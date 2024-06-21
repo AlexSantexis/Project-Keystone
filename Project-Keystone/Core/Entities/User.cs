@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_Keystone.Core.Entities
 {
-    public class User : IdentityUser<int>
+    public class User : IdentityUser
     {
-        
-        public string Firstname { get; set; } = string.Empty;
-        public string Lastname { get; set; } = string.Empty;
+        public string? Firstname { get; set; } 
+        public string? Lastname { get; set; } 
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
@@ -19,6 +19,7 @@ namespace Project_Keystone.Core.Entities
 
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
+        
 
     }
 }

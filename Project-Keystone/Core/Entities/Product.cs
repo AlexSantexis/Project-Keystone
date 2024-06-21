@@ -16,7 +16,7 @@ namespace Project_Keystone.Core.Entities
 
         public decimal Price { get; set; }
 
-        public string? ImageUrl { get; set; } 
+        public byte[]? ImageData { get; set; } 
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;

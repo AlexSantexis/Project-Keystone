@@ -6,7 +6,7 @@ namespace Project_Keystone.Api.Models.DTOs
     {
         public int BasketId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]

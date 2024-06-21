@@ -7,11 +7,11 @@ namespace Project_Keystone.Infrastructure.Configurations
     {
         public static IServiceCollection AddRepositoriesConfiguration(this IServiceCollection services)
         {
+            services.AddScoped<ITokenRepository, TokenRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IWishListRepository, WishlistRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();

@@ -22,13 +22,14 @@ namespace Project_Keystone.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<string>", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
@@ -46,9 +47,25 @@ namespace Project_Keystone.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("ROLES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7ec4273a-4767-4b83-b385-ee2136aa2eaf",
+                            ConcurrencyStamp = "7ec4273a-4767-4b83-b385-ee2136aa2eaf",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "dda0e414-944b-4c35-804b-4e4784abc301",
+                            ConcurrencyStamp = "dda0e414-944b-4c35-804b-4e4784abc301",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,17 +79,21 @@ namespace Project_Keystone.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("ROLE_CLAIMS", (string)null);
+                    b.ToTable("AspNetRoleClaims", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,17 +107,21 @@ namespace Project_Keystone.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("USER_CLAIMS", (string)null);
+                    b.ToTable("AspNetUserClaims", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -107,23 +132,27 @@ namespace Project_Keystone.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("USER_LOGINS", (string)null);
+                    b.ToTable("AspNetUserLogins", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -132,10 +161,10 @@ namespace Project_Keystone.Migrations
                     b.ToTable("USER_ROLES", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -148,7 +177,10 @@ namespace Project_Keystone.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("USER_TOKENS", (string)null);
+                    b.ToTable("AspNetUserTokens", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Address", b =>
@@ -175,8 +207,8 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("STREET_ADDRESS");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
 
                     b.Property<string>("ZipCode")
@@ -187,7 +219,8 @@ namespace Project_Keystone.Migrations
                     b.HasKey("AddressId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[USER_ID] IS NOT NULL");
 
                     b.ToTable("ADDRESSES", (string)null);
                 });
@@ -209,14 +242,15 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("UPDATED_AT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("BasketId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[USER_ID] IS NOT NULL");
 
                     b.ToTable("BASKETS", (string)null);
                 });
@@ -275,6 +309,28 @@ namespace Project_Keystone.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("CATEGORIES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Name = "PC"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Name = "PSN"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Name = "Xbox"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            Name = "Nintendo"
+                        });
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Genre", b =>
@@ -298,6 +354,33 @@ namespace Project_Keystone.Migrations
                         .IsUnique();
 
                     b.ToTable("GENRES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            GenreId = 1,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            GenreId = 2,
+                            Name = "Adventure"
+                        },
+                        new
+                        {
+                            GenreId = 3,
+                            Name = "Singleplayer"
+                        },
+                        new
+                        {
+                            GenreId = 4,
+                            Name = "Strategy"
+                        },
+                        new
+                        {
+                            GenreId = 5,
+                            Name = "Multiplayer"
+                        });
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Order", b =>
@@ -329,11 +412,12 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("STREET_ADDRESS");
 
                     b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("TOTAL_AMOUNT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
 
                     b.Property<string>("ZipCode")
@@ -362,6 +446,7 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("ORDER_ID");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("PRICE");
 
@@ -374,6 +459,7 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("QUANTITY");
 
                     b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("TOTAL");
 
@@ -407,9 +493,9 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("DESCRIPTION");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("IMAGE_URL");
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("IMAGE_DATA");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -418,6 +504,7 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("NAME");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("PRICE");
 
@@ -449,12 +536,8 @@ namespace Project_Keystone.Migrations
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("USER_ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -471,12 +554,10 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("EMAIL");
 
                     b.Property<string>("Firstname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FIRSTNAME");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("LASTNAME");
 
@@ -544,14 +625,15 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("UPDATED_AT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("WishlistId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[USER_ID] IS NOT NULL");
 
                     b.ToTable("WISHLISTS", (string)null);
                 });
@@ -586,16 +668,16 @@ namespace Project_Keystone.Migrations
                     b.ToTable("WISHLIST_ITEMS", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", null)
                         .WithMany()
@@ -604,7 +686,7 @@ namespace Project_Keystone.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", null)
                         .WithMany()
@@ -613,9 +695,9 @@ namespace Project_Keystone.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -628,7 +710,7 @@ namespace Project_Keystone.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", null)
                         .WithMany()
@@ -641,9 +723,7 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Address")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Address", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Project_Keystone.Core.Entities.Address", "UserId");
 
                     b.Navigation("User");
                 });
@@ -652,9 +732,7 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Basket")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Basket", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Project_Keystone.Core.Entities.Basket", "UserId");
 
                     b.Navigation("User");
                 });
@@ -682,9 +760,7 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -742,9 +818,7 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Wishlist")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Wishlist", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Project_Keystone.Core.Entities.Wishlist", "UserId");
 
                     b.Navigation("User");
                 });

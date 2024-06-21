@@ -16,32 +16,40 @@ namespace Project_Keystone.Core.Filters
                  .OfType<AuthorizeAttribute>()
                  .Distinct();
 
-            if (authAttributes.Any())
+            if (!authAttributes.Any()) return;
+            var securityScheme = new OpenApiSecurityScheme
             {
-                operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
-                operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
-
-                var securityRequirement = new OpenApiSecurityRequirement();
-                var scheme = new OpenApiSecurityScheme
+                Reference = new OpenApiReference
                 {
-                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = JwtBearerDefaults.AuthenticationScheme },
-                    Scheme = "oath2",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header
-                };
-                securityRequirement.Add(scheme, new List<string>());
-                operation.Security = new List<OpenApiSecurityRequirement> { securityRequirement };
+                    Type = ReferenceType.SecurityScheme,
+                    Id = JwtBearerDefaults.AuthenticationScheme
+                },
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                Description = "JWT Authorization header using the Bearer scheme."
+            };
+            var securityRequirement = new OpenApiSecurityRequirement
+            {
+                { securityScheme, new List<string>() }
+            };
+            operation.Security = new List<OpenApiSecurityRequirement> { securityRequirement };
+            operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
+            operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
 
-                var roles = authAttributes
-                    .Where(attr => !string.IsNullOrWhiteSpace(attr.Roles))
-                    .SelectMany(attr => attr.Roles!.Split(','))
-                    .Distinct();
-                if (roles.Any())
-                {
-                    operation.Description += $"Roles: {string.Join(", ", roles)}";
-                }
+            var roles = authAttributes
+            .SelectMany(a => a.Roles?.Split(',') ?? Enumerable.Empty<string>())
+            .Distinct()
+            .ToList();
+
+
+            if (roles.Any())
+            {
+                securityRequirement[securityScheme] = roles;
+                operation.Description += "\nRequired roles: " + string.Join(", ", roles);
             }
-
         }
     }
 }

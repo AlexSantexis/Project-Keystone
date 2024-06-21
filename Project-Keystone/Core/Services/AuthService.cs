@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
+using Project_Keystone.Api.Models.DTOs;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Project_Keystone.Api.Models.DTOs;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Core.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Project_Keystone.Core.Services
 {
@@ -15,19 +17,23 @@ namespace Project_Keystone.Core.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
+        private readonly RoleManager<IdentityRole<string>> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly ILogger<AuthService> _logger;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole<int>> roleManager, IConfiguration configuration, ILogger<AuthService> logger, IMapper mapper)
+        public AuthService(IHttpContextAccessor httpContextAccessor,IUnitOfWork unitOfwork,UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole<string>> roleManager, IConfiguration configuration, ILogger<AuthService> logger, IMapper mapper)
         {
+            _unitOfWork = unitOfwork;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _logger = logger;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<bool> RegisterUserAsync(UserRegisterDTO registerDTO)
@@ -36,7 +42,8 @@ namespace Project_Keystone.Core.Services
             {
                 var user = _mapper.Map<User>(registerDTO);
                 user.UserName = registerDTO.Email!;
-
+                user.SecurityStamp = Guid.NewGuid().ToString();
+                _logger.LogInformation($"Before CreateAsync: User ID: {user.Id}, UserName: {user.UserName}");
                 var result = await _userManager.CreateAsync(user, registerDTO.Password!);
                 if (result.Succeeded)
                 {
@@ -66,10 +73,16 @@ namespace Project_Keystone.Core.Services
                     _logger.LogWarning("Login failed for {Email}", loginDTO.Email);
                     throw new Exception("Login failed. Invalid email or password.");
                 }
-
-                var token = GenerateToken(user);
+                if (string.IsNullOrEmpty(user.SecurityStamp))
+                {
+                    user.SecurityStamp = Guid.NewGuid().ToString();
+                }
+                
+                await _userManager.UpdateAsync(user);
+                var roles = (await _userManager.GetRolesAsync(user)).ToList();
+                var access_token =  _unitOfWork.Tokens.CreateJWTToken(user,roles);
                 _logger.LogInformation("User {Email} logged in successfully.", loginDTO.Email);
-                return token;
+                return access_token;
             }
             catch (Exception ex)
             {
@@ -106,106 +119,90 @@ namespace Project_Keystone.Core.Services
             }
         }
 
-        public async Task<TokenModel> RefreshToken(TokenModel model)
+        public async Task<(bool Success,string? Token)> UpdateUserAsync(UserUpdateDTO updateDTO)
         {
+  
             try
             {
-                if (model == null)
+                _logger.LogInformation("Attempting to update user with email {Email}", updateDTO.Email);
+
+                var user = await _userManager.FindByEmailAsync(updateDTO.Email);
+                if (user == null)
                 {
-                    return new TokenModel { Message = "Invalid Request" };
+                    _logger.LogWarning("Update user failed. User with email {Email} does not exist", user);
+                    return (false, null);
+                }
+                _logger.LogInformation("User found. Updating user details.");
+                _mapper.Map(updateDTO, user);
+
+                user.UserName = updateDTO.Email;
+                user.NormalizedEmail = _userManager.NormalizeEmail(updateDTO.Email);
+                user.NormalizedUserName = _userManager.NormalizeName(updateDTO.Email);
+                user.SecurityStamp = Guid.NewGuid().ToString();
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User with email {Email} updated successfully", user.Email);
+                    var userRoles = (await _userManager.GetRolesAsync(user)).ToList();
+                    var newToken = _unitOfWork.Tokens.CreateJWTToken(user,userRoles);
+                    return (true, newToken);
                 }
 
-                var principal = GetPrincipalFromExpiredToken(model.AccessToken);
-                if (principal == null)
-                {
-                    return new TokenModel { Message = "Invalid Refresh Token or Access Token" };
-                }
-
-                var username = principal.Identity!.Name;
-                var user = await _userManager.FindByNameAsync(username!);
-                if (user == null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
-                {
-                    return new TokenModel { Message = "Invalid Refresh Token or Access Token" };
-                }
-
-                var newAccessToken = GenerateToken(user);
-                var newRefreshToken = GenerateRefreshToken();
-
-                user.RefreshToken = newRefreshToken;
-                user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["Jwt:RefreshTokenValidityInMinutes"]));
-                await _userManager.UpdateAsync(user);
-
-                _logger.LogInformation("Token refreshed successfully for user {Email}", user.Email);
-
-                return new TokenModel
-                {
-                    AccessToken = newAccessToken,
-                    RefreshToken = newRefreshToken
-                };
+                var errors = string.Join(", ", result.Errors.Select(e => $"{e.Code}: {e.Description}"));
+                _logger.LogWarning("Update user failed for email {Email}: {Errors}", user.Email, errors);
+                return (false, null);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while refreshing token");
+                _logger.LogError(ex, "An error occurred while updating user with email {Email}", updateDTO.Email);
                 throw;
             }
         }
 
-        public string GenerateToken(User user)
+        public async Task<bool> DeleteUserAsync(string email)
         {
-            var jwtSettings = _configuration.GetSection("Jwt");
-            var secretKey = jwtSettings["Key"];
-            var issuer = jwtSettings["Issuer"];
-            var audience = jwtSettings["Audience"];
-
-            var claims = new[]
+            try
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email!),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email!),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiry = DateTime.Now.AddMinutes(Convert.ToInt32(jwtSettings["ExpiryMinutes"]));
-
-            var token = new JwtSecurityToken(
-                issuer: issuer,
-                audience: audience,
-                claims: claims,
-                expires: expiry,
-                signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        public string GenerateRefreshToken()
-        {
-            var randomNumber = new byte[64];
-            using var rng = RandomNumberGenerator.Create();
-            rng.GetBytes(randomNumber);
-            return Convert.ToBase64String(randomNumber);
-        }
-
-        private ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
-        {
-            var tokenValidationParameters = new TokenValidationParameters
+                var user = await _userManager.FindByEmailAsync(email);
+                if(user == null)
+                {
+                    _logger.LogWarning("User not found with email {Email}", email);
+                    return false;
+                }
+                var result = await _userManager.DeleteAsync(user);
+                if(!result.Succeeded)
+                {
+                    var errors = string.Join(",", result.Errors.Select(e => e.Description));
+                    _logger.LogWarning("User deletion failed for {Email}: {Errors}", email, errors);
+                    return false;
+                }
+                _logger.LogInformation("User {Email} deleted successfully.", email);
+                return true;
+            }
+            catch (Exception ex)
             {
-                ValidateAudience = false,
-                ValidateIssuer = false,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)),
-                ValidateLifetime = false
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
-            if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-                throw new SecurityTokenException("Invalid token");
-
-            return principal;
+                _logger.LogError(ex, "An error occurred while deleting user {Email}", email);
+                throw;
+            }
         }
+        public async Task<UserDTO> GetCurrentUserAsync(ClaimsPrincipal userPrincipal)
+        {
+            var userId = userPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(userId == null)
+            {
+                throw new UnauthorizedAccessException("User ID not found");
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if(user == null)
+            {
+                throw new KeyNotFoundException("User not found");
+            }
+            return _mapper.Map<UserDTO>(user);
+        }
+       
+
+
     }
 
 }

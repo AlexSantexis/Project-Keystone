@@ -16,7 +16,9 @@
                 options.AddPolicy("AngularClient",
                     b => b.WithOrigins("http://localhost:4200")
                           .AllowAnyMethod()
-                          .AllowAnyOrigin());
+                          .AllowAnyHeader()
+                          .AllowCredentials());
+
             });
             return services;
         }

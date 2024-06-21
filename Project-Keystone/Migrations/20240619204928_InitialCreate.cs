@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Project_Keystone.Migrations
 {
     /// <inheritdoc />
@@ -25,36 +27,53 @@ namespace Project_Keystone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ROLES",
+                name: "GENRES",
                 columns: table => new
                 {
-                    ROLE_ID = table.Column<int>(type: "int", nullable: false)
+                    GENRE_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ROLE_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    NAME = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ROLES", x => x.ROLE_ID);
+                    table.PrimaryKey("PK_GENRES", x => x.GENRE_ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ROLES",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ROLES", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "USERS",
                 columns: table => new
                 {
-                    USER_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_NAME = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    FIRSTNAME = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LASTNAME = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PASSWORD_HASH = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EMAIL = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ROLE = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FIRSTNAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LASTNAME = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CREATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UPDATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UPDATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NORMALIZED_USER_NAME = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EMAIL = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    PASSWORD_HASH = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    CONCURRENCY_STAMP = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_USERS", x => x.USER_ID);
+                    table.PrimaryKey("PK_USERS", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,7 +85,7 @@ namespace Project_Keystone.Migrations
                     NAME = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     DESCRIPTION = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CATEGORY_ID = table.Column<int>(type: "int", nullable: false),
-                    PRICE = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PRICE = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     IMAGE_URL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CREATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -83,12 +102,34 @@ namespace Project_Keystone.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ADDRESSES",
+                columns: table => new
+                {
+                    ADDRESS_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    STREET_ADDRESS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CITY = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ZIP_CODE = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    COUNTRY = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    USER_ID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ADDRESSES", x => x.ADDRESS_ID);
+                    table.ForeignKey(
+                        name: "FK_ADDRESSES_USERS_USER_ID",
+                        column: x => x.USER_ID,
+                        principalTable: "USERS",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BASKETS",
                 columns: table => new
                 {
                     BASKET_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_ID = table.Column<int>(type: "int", nullable: false),
+                    USER_ID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CREATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -99,8 +140,7 @@ namespace Project_Keystone.Migrations
                         name: "FK_BASKETS_USERS_USER_ID",
                         column: x => x.USER_ID,
                         principalTable: "USERS",
-                        principalColumn: "USER_ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -109,10 +149,13 @@ namespace Project_Keystone.Migrations
                 {
                     ORDER_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_ID = table.Column<int>(type: "int", nullable: false),
+                    USER_ID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ORDER_DATE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TOTAL_AMOUNT = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SHIPPING_ADDRESS = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TOTAL_AMOUNT = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    STREET_ADDRESS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CITY = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ZIP_CODE = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    COUNTRY = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,33 +164,30 @@ namespace Project_Keystone.Migrations
                         name: "FK_ORDERS_USERS_USER_ID",
                         column: x => x.USER_ID,
                         principalTable: "USERS",
-                        principalColumn: "USER_ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "USER_ROLES",
                 columns: table => new
                 {
-                    USER_ROLE_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_ID = table.Column<int>(type: "int", nullable: false),
-                    ROLE_ID = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_USER_ROLES", x => x.USER_ROLE_ID);
+                    table.PrimaryKey("PK_USER_ROLES", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_USER_ROLES_ROLES_ROLE_ID",
-                        column: x => x.ROLE_ID,
+                        name: "FK_USER_ROLES_ROLES_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "ROLES",
-                        principalColumn: "ROLE_ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_USER_ROLES_USERS_USER_ID",
-                        column: x => x.USER_ID,
+                        name: "FK_USER_ROLES_USERS_UserId",
+                        column: x => x.UserId,
                         principalTable: "USERS",
-                        principalColumn: "USER_ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -157,7 +197,7 @@ namespace Project_Keystone.Migrations
                 {
                     WISHLIST_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    USER_ID = table.Column<int>(type: "int", nullable: false),
+                    USER_ID = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CREATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UPDATED_AT = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -168,7 +208,30 @@ namespace Project_Keystone.Migrations
                         name: "FK_WISHLISTS_USERS_USER_ID",
                         column: x => x.USER_ID,
                         principalTable: "USERS",
-                        principalColumn: "USER_ID",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PRODUCT_GENRES",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    GenreId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PRODUCT_GENRES", x => new { x.ProductId, x.GenreId });
+                    table.ForeignKey(
+                        name: "FK_PRODUCT_GENRES_GENRES_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "GENRES",
+                        principalColumn: "GENRE_ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PRODUCT_GENRES_PRODUCTS_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "PRODUCTS",
+                        principalColumn: "PRODUCT_ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -209,8 +272,8 @@ namespace Project_Keystone.Migrations
                     ORDER_ID = table.Column<int>(type: "int", nullable: false),
                     PRODUCT_ID = table.Column<int>(type: "int", nullable: false),
                     QUANTITY = table.Column<int>(type: "int", nullable: false),
-                    PRICE = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TOTAL = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PRICE = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    TOTAL = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -256,6 +319,22 @@ namespace Project_Keystone.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "ROLES",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "7ec4273a-4767-4b83-b385-ee2136aa2eaf", "7ec4273a-4767-4b83-b385-ee2136aa2eaf", "User", "USER" },
+                    { "dda0e414-944b-4c35-804b-4e4784abc301", "dda0e414-944b-4c35-804b-4e4784abc301", "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ADDRESSES_USER_ID",
+                table: "ADDRESSES",
+                column: "USER_ID",
+                unique: true,
+                filter: "[USER_ID] IS NOT NULL");
+
             migrationBuilder.CreateIndex(
                 name: "IX_BASKET_ITEMS_BASKET_ID",
                 table: "BASKET_ITEMS",
@@ -270,12 +349,19 @@ namespace Project_Keystone.Migrations
                 name: "IX_BASKETS_USER_ID",
                 table: "BASKETS",
                 column: "USER_ID",
-                unique: true);
+                unique: true,
+                filter: "[USER_ID] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CATEGORIES_NAME",
                 table: "CATEGORIES",
                 column: "NAME");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GENRES_NAME",
+                table: "GENRES",
+                column: "NAME",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ORDER_DETAILS_ORDER_ID",
@@ -293,20 +379,31 @@ namespace Project_Keystone.Migrations
                 column: "USER_ID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PRODUCT_GENRES_GenreId",
+                table: "PRODUCT_GENRES",
+                column: "GenreId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PRODUCTS_CATEGORY_ID",
                 table: "PRODUCTS",
                 column: "CATEGORY_ID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_USER_ROLES_ROLE_ID",
-                table: "USER_ROLES",
-                column: "ROLE_ID");
+                name: "RoleNameIndex",
+                table: "ROLES",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_USER_ROLES_USER_ID_ROLE_ID",
+                name: "IX_USER_ROLES_RoleId",
                 table: "USER_ROLES",
-                columns: new[] { "USER_ID", "ROLE_ID" },
-                unique: true);
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "USERS",
+                column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LASTNAME",
@@ -317,13 +414,15 @@ namespace Project_Keystone.Migrations
                 name: "UQ_EMAIL",
                 table: "USERS",
                 column: "EMAIL",
-                unique: true);
+                unique: true,
+                filter: "[EMAIL] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "UQ_USERNAME",
+                name: "UserNameIndex",
                 table: "USERS",
-                column: "USER_NAME",
-                unique: true);
+                column: "NORMALIZED_USER_NAME",
+                unique: true,
+                filter: "[NORMALIZED_USER_NAME] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WISHLIST_ITEMS_PRODUCT_ID",
@@ -339,17 +438,24 @@ namespace Project_Keystone.Migrations
                 name: "IX_WISHLISTS_USER_ID",
                 table: "WISHLISTS",
                 column: "USER_ID",
-                unique: true);
+                unique: true,
+                filter: "[USER_ID] IS NOT NULL");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ADDRESSES");
+
+            migrationBuilder.DropTable(
                 name: "BASKET_ITEMS");
 
             migrationBuilder.DropTable(
                 name: "ORDER_DETAILS");
+
+            migrationBuilder.DropTable(
+                name: "PRODUCT_GENRES");
 
             migrationBuilder.DropTable(
                 name: "USER_ROLES");
@@ -362,6 +468,9 @@ namespace Project_Keystone.Migrations
 
             migrationBuilder.DropTable(
                 name: "ORDERS");
+
+            migrationBuilder.DropTable(
+                name: "GENRES");
 
             migrationBuilder.DropTable(
                 name: "ROLES");

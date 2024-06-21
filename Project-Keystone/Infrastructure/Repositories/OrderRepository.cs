@@ -11,7 +11,7 @@ namespace Project_Keystone.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Order?>> GetOrdersByUserId(int userId)
+        public async Task<IEnumerable<Order?>> GetOrdersByUserId(string userId)
         {
             return await _context.Orders
                 .Where(o => o.UserId == userId)

@@ -23,7 +23,5 @@ namespace Project_Keystone.Api.Models.DTOs
             ErrorMessage = "Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character.")]
         public string? Password { get; set; }
 
-        
-
     }
 }

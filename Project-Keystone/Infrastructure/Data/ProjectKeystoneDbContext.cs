@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Project_Keystone.Infrastructure.Data
 {
-    public class ProjectKeystoneDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+    public class ProjectKeystoneDbContext : IdentityDbContext<User, IdentityRole<string>,string>
     {
         public ProjectKeystoneDbContext(DbContextOptions<ProjectKeystoneDbContext> options) : base(options)
         {
@@ -35,14 +35,62 @@ namespace Project_Keystone.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
+            var userRoleId = "7ec4273a-4767-4b83-b385-ee2136aa2eaf";
+            var adminRoleId = "dda0e414-944b-4c35-804b-4e4784abc301";
+            var roles = new List<IdentityRole<string>>
+            {
+                new IdentityRole<string>
+                {
+                    Id = userRoleId,
+                    ConcurrencyStamp = userRoleId,
+                    Name = "User",
+                    NormalizedName = "User".ToUpper()
+                },
+                new IdentityRole<string>
+                {
+                    Id = adminRoleId,
+                    ConcurrencyStamp = adminRoleId,
+                    Name = "Admin",
+                    NormalizedName = "Admin".ToUpper()
+                }
+            };
+
+            var categories = new List<Category>
+            {
+            new Category { CategoryId = 1, Name = "PC" },
+            new Category { CategoryId = 2, Name = "PSN" },
+            new Category { CategoryId = 3, Name = "Xbox" },
+            new Category { CategoryId = 4, Name = "Nintendo" }
+            };
+
+            modelBuilder.Entity<Category>().HasData(categories);
+
+            var genres = new List<Genre>
+        {
+            new Genre { GenreId = 1, Name = "Action" },
+            new Genre { GenreId = 2, Name = "Adventure" },
+            new Genre { GenreId = 3, Name = "Singleplayer" },
+            new Genre { GenreId = 4, Name = "Strategy" },
+            new Genre { GenreId = 5, Name = "Multiplayer" }
+        };
+
+            modelBuilder.Entity<Genre>().HasData(genres);
+
+            modelBuilder.Entity<IdentityRole<string>>().HasData(roles);
+
+            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("AspNetRoleClaims", t => t.ExcludeFromMigrations());
+            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("AspNetUserClaims", t => t.ExcludeFromMigrations());
+            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("AspNetUserLogins", t => t.ExcludeFromMigrations());
+            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("AspNetUserTokens", t => t.ExcludeFromMigrations());
+
 
             modelBuilder.Entity<User>(entity =>
             {
+                
                 entity.ToTable("USERS");
                 entity.HasIndex(e => e.Lastname, "IX_LASTNAME");
                 entity.HasIndex(e => e.Email, "UQ_EMAIL").IsUnique();
-                entity.Property(e => e.Id).HasColumnName("USER_ID");
                 entity.Property(e => e.Firstname).HasColumnName("FIRSTNAME");
                 entity.Property(e => e.Lastname).HasColumnName("LASTNAME");
                 entity.Property(e => e.Email).HasColumnName("EMAIL");
@@ -55,6 +103,7 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.NormalizedUserName).HasColumnName("NORMALIZED_USER_NAME");
                 entity.Property(e => e.ConcurrencyStamp).HasColumnName("CONCURRENCY_STAMP");
 
+                
 
                 entity.Ignore(e => e.EmailConfirmed);
                 entity.Ignore(e => e.TwoFactorEnabled);
@@ -68,45 +117,21 @@ namespace Project_Keystone.Infrastructure.Data
                 
             });
 
-            modelBuilder.Entity<IdentityRole<int>>(entity =>
+            modelBuilder.Entity<IdentityRole<string>>(entity =>
             {
-                entity.ToTable("ROLES");               
-                entity.Ignore(r => r.ConcurrencyStamp);
+
+                entity.ToTable("ROLES");
                 
             });
 
-            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
+            modelBuilder.Entity<IdentityUserRole<string>>(entity =>
             {
                 entity.ToTable("USER_ROLES");
+
             });
 
-            // Configuration for IdentityUserLogin<int>
-            modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
-            {
-                entity.HasKey(login => new { login.LoginProvider, login.ProviderKey });
-                entity.ToTable("USER_LOGINS");
-            });
+          
 
-            // Configuration for IdentityUserToken<int>
-            modelBuilder.Entity<IdentityUserToken<int>>(entity =>
-            {
-                entity.HasKey(token => new { token.UserId, token.LoginProvider, token.Name });
-                entity.ToTable("USER_TOKENS");
-            });
-
-            // Configuration for IdentityUserClaim<int>
-            modelBuilder.Entity<IdentityUserClaim<int>>(entity =>
-            {
-                entity.HasKey(claim => claim.Id);
-                entity.ToTable("USER_CLAIMS");
-            });
-
-            // Configuration for IdentityRoleClaim<int>
-            modelBuilder.Entity<IdentityRoleClaim<int>>(entity =>
-            {
-                entity.HasKey(claim => claim.Id);
-                entity.ToTable("ROLE_CLAIMS");
-            });
 
             modelBuilder.Entity<Basket>(entity =>
             {
@@ -153,6 +178,7 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.City).HasColumnName("CITY");               
                 entity.Property(e => e.ZipCode).HasColumnName("ZIP_CODE");
                 entity.Property(e => e.Country).HasColumnName("COUNTRY");
+                entity.Property(e => e.TotalAmount).HasPrecision(18, 2);
                 entity.HasOne(d => d.User).WithMany(p => p.Orders).HasForeignKey(d => d.UserId);
             });
 
@@ -165,6 +191,8 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.Quantity).HasColumnName("QUANTITY");
                 entity.Property(e => e.Price).HasColumnName("PRICE");
                 entity.Property(e => e.Total).HasColumnName("TOTAL");
+                entity.Property(e => e.Price).HasPrecision(18, 2);
+                entity.Property(e => e.Total).HasPrecision(18, 2);
                 entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails).HasForeignKey(d => d.OrderId);
                 entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails).HasForeignKey(d => d.ProductId);
             });
@@ -177,9 +205,10 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
                 entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
                 entity.Property(e => e.Price).HasColumnName("PRICE");
-                entity.Property(e => e.ImageUrl).HasColumnName("IMAGE_URL");
+                entity.Property(e => e.ImageData).HasColumnName("IMAGE_DATA");
                 entity.Property(e => e.CreatedAt).HasColumnName("CREATED_AT");
                 entity.Property(e => e.UpdatedAt).HasColumnName("UPDATED_AT");
+                entity.Property(e => e.Price).HasPrecision(18, 2);
                 entity.HasOne(d => d.Category).WithMany(p => p.Products).HasForeignKey(d => d.CategoryId);
             });
 

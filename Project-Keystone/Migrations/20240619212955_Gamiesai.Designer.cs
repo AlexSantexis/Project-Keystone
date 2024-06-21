@@ -12,8 +12,8 @@ using Project_Keystone.Infrastructure.Data;
 namespace Project_Keystone.Migrations
 {
     [DbContext(typeof(ProjectKeystoneDbContext))]
-    [Migration("20240527104042_DataBaseUpdated")]
-    partial class DataBaseUpdated
+    [Migration("20240619212955_Gamiesai")]
+    partial class Gamiesai
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,209 @@ namespace Project_Keystone.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<string>", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("ROLES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7ec4273a-4767-4b83-b385-ee2136aa2eaf",
+                            ConcurrencyStamp = "7ec4273a-4767-4b83-b385-ee2136aa2eaf",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "dda0e414-944b-4c35-804b-4e4784abc301",
+                            ConcurrencyStamp = "dda0e414-944b-4c35-804b-4e4784abc301",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("USER_ROLES", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", null, t =>
+                        {
+                            t.ExcludeFromMigrations();
+                        });
+                });
+
+            modelBuilder.Entity("Project_Keystone.Core.Entities.Address", b =>
+                {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ADDRESS_ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AddressId"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CITY");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("COUNTRY");
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("STREET_ADDRESS");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("USER_ID");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ZIP_CODE");
+
+                    b.HasKey("AddressId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[USER_ID] IS NOT NULL");
+
+                    b.ToTable("ADDRESSES", (string)null);
+                });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Basket", b =>
                 {
@@ -42,14 +245,15 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("UPDATED_AT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("BasketId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[USER_ID] IS NOT NULL");
 
                     b.ToTable("BASKETS", (string)null);
                 });
@@ -110,6 +314,29 @@ namespace Project_Keystone.Migrations
                     b.ToTable("CATEGORIES", (string)null);
                 });
 
+            modelBuilder.Entity("Project_Keystone.Core.Entities.Genre", b =>
+                {
+                    b.Property<int>("GenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("GENRE_ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("NAME");
+
+                    b.HasKey("GenreId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("GENRES", (string)null);
+                });
+
             modelBuilder.Entity("Project_Keystone.Core.Entities.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -119,22 +346,38 @@ namespace Project_Keystone.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CITY");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("COUNTRY");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("ORDER_DATE");
 
-                    b.Property<string>("ShippingAddress")
+                    b.Property<string>("StreetAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("SHIPPING_ADDRESS");
+                        .HasColumnName("STREET_ADDRESS");
 
                     b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("TOTAL_AMOUNT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ZIP_CODE");
 
                     b.HasKey("OrderId");
 
@@ -157,6 +400,7 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("ORDER_ID");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("PRICE");
 
@@ -169,6 +413,7 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("QUANTITY");
 
                     b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("TOTAL");
 
@@ -213,6 +458,7 @@ namespace Project_Keystone.Migrations
                         .HasColumnName("NAME");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("PRICE");
 
@@ -227,130 +473,93 @@ namespace Project_Keystone.Migrations
                     b.ToTable("PRODUCTS", (string)null);
                 });
 
-            modelBuilder.Entity("Project_Keystone.Core.Entities.Role", b =>
+            modelBuilder.Entity("Project_Keystone.Core.Entities.ProductGenre", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ROLE_ID");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("ProductId", "GenreId");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasColumnName("ROLE_NAME");
+                    b.HasIndex("GenreId");
 
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ROLES", (string)null);
+                    b.ToTable("PRODUCT_GENRES", (string)null);
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("USER_ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CONCURRENCY_STAMP");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("CREATED_AT");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)")
                         .HasColumnName("EMAIL");
 
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Firstname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FIRSTNAME");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("LASTNAME");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)")
+                        .HasColumnName("NORMALIZED_USER_NAME");
 
                     b.Property<string>("PasswordHash")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)")
                         .HasColumnName("PASSWORD_HASH");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
+                    b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("UPDATED_AT");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasColumnName("USERNAME");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NORMALIZED_USER_NAME] IS NOT NULL");
 
                     b.HasIndex(new[] { "Lastname" }, "IX_LASTNAME");
 
                     b.HasIndex(new[] { "Email" }, "UQ_EMAIL")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[EMAIL] IS NOT NULL");
 
                     b.ToTable("USERS", (string)null);
-                });
-
-            modelBuilder.Entity("Project_Keystone.Core.Entities.UserRole", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("USER_ROLES", (string)null);
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Wishlist", b =>
@@ -370,14 +579,15 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("UPDATED_AT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("USER_ID");
 
                     b.HasKey("WishlistId");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[USER_ID] IS NOT NULL");
 
                     b.ToTable("WISHLISTS", (string)null);
                 });
@@ -412,13 +622,71 @@ namespace Project_Keystone.Migrations
                     b.ToTable("WISHLIST_ITEMS", (string)null);
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Project_Keystone.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Project_Keystone.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project_Keystone.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Project_Keystone.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Project_Keystone.Core.Entities.Address", b =>
+                {
+                    b.HasOne("Project_Keystone.Core.Entities.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("Project_Keystone.Core.Entities.Address", "UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Project_Keystone.Core.Entities.Basket", b =>
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Basket")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Basket", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Project_Keystone.Core.Entities.Basket", "UserId");
 
                     b.Navigation("User");
                 });
@@ -446,9 +714,7 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -483,32 +749,30 @@ namespace Project_Keystone.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Project_Keystone.Core.Entities.UserRole", b =>
+            modelBuilder.Entity("Project_Keystone.Core.Entities.ProductGenre", b =>
                 {
-                    b.HasOne("Project_Keystone.Core.Entities.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
+                    b.HasOne("Project_Keystone.Core.Entities.Genre", "genre")
+                        .WithMany("ProductGenres")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Project_Keystone.Core.Entities.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Project_Keystone.Core.Entities.Product", "product")
+                        .WithMany("ProductGenres")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Role");
+                    b.Navigation("genre");
 
-                    b.Navigation("User");
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Wishlist", b =>
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Wishlist")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Wishlist", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Project_Keystone.Core.Entities.Wishlist", "UserId");
 
                     b.Navigation("User");
                 });
@@ -542,6 +806,11 @@ namespace Project_Keystone.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("Project_Keystone.Core.Entities.Genre", b =>
+                {
+                    b.Navigation("ProductGenres");
+                });
+
             modelBuilder.Entity("Project_Keystone.Core.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -553,21 +822,18 @@ namespace Project_Keystone.Migrations
 
                     b.Navigation("OrderDetails");
 
-                    b.Navigation("WishlistItems");
-                });
+                    b.Navigation("ProductGenres");
 
-            modelBuilder.Entity("Project_Keystone.Core.Entities.Role", b =>
-                {
-                    b.Navigation("UserRoles");
+                    b.Navigation("WishlistItems");
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.User", b =>
                 {
+                    b.Navigation("Address");
+
                     b.Navigation("Basket");
 
                     b.Navigation("Orders");
-
-                    b.Navigation("UserRoles");
 
                     b.Navigation("Wishlist");
                 });

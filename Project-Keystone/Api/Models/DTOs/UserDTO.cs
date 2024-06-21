@@ -4,7 +4,7 @@ namespace Project_Keystone.Api.Models.DTOs
 {
     public class UserDTO
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
         [Required]
         [StringLength(50)]
         public string UserName { get; set; } = string.Empty;

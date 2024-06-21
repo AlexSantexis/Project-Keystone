@@ -23,7 +23,7 @@ namespace Project_Keystone.Infrastructure.Repositories
             }
         }
 
-        public async Task<Wishlist?> GetWishlistByUserIdAsync(int userId)
+        public async Task<Wishlist?> GetWishlistByUserIdAsync(string userId)
         {
             return await _context.Wishlist
                 .Include(w => w.WishListItems)
