@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project_Keystone.Api.Models.DTOs;
+using Project_Keystone.Api.Models.DTOs.UserDTOs;
 using Project_Keystone.Core.Services.Interfaces;
 using System.Security.Claims;
 

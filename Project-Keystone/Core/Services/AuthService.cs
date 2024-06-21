@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Project_Keystone.Api.Models.DTOs;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -11,6 +10,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Project_Keystone.Infrastructure.Repositories.Interfaces;
 using Project_Keystone.Core.Services.Interfaces;
+using Project_Keystone.Api.Models.DTOs.UserDTOs;
 
 namespace Project_Keystone.Core.Services
 {

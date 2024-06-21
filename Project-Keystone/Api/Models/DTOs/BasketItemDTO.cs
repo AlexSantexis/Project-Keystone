@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Project_Keystone.Api.Models.DTOs.ProductDTOs;
 
 namespace Project_Keystone.Api.Models.DTOs
 {

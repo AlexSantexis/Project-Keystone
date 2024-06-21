@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Project_Keystone.Api.Models.DTOs
+namespace Project_Keystone.Api.Models.DTOs.UserDTOs
 {
     public class UserRegisterDTO
     {

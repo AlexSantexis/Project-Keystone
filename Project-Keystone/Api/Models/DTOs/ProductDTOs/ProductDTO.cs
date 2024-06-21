@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Xunit.Sdk;
 
-namespace Project_Keystone.Api.Models.DTOs
+namespace Project_Keystone.Api.Models.DTOs.ProductDTOs
 {
     public class ProductDTO
     {
-        public int ProductId { get; set; }
+        public int? ProductId { get; set; }
         [Required]
         [StringLength(100)]
         public string Name { get; set; } = null!;
@@ -15,7 +15,7 @@ namespace Project_Keystone.Api.Models.DTOs
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
         public decimal Price { get; set; }
-        public string ImageUrl { get; set; } = null!;
+        public byte[] ImageData { get; set; } = null!;
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]

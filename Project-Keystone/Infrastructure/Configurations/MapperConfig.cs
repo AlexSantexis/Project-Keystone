@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Project_Keystone.Api.Models.DTOs;
+using Project_Keystone.Api.Models.DTOs.ProductDTOs;
+using Project_Keystone.Api.Models.DTOs.UserDTOs;
 using Project_Keystone.Core.Entities;
 
 namespace Project_Keystone.Infrastructure.Configurations
@@ -7,6 +8,7 @@ namespace Project_Keystone.Infrastructure.Configurations
     public class MapperConfig : Profile
     {
         public MapperConfig() {
+            //User Mappers
             CreateMap<User,UserLoginDTO>().ReverseMap();
 
             CreateMap<UserRegisterDTO,User>()
@@ -22,6 +24,11 @@ namespace Project_Keystone.Infrastructure.Configurations
                 .ReverseMap();
 
             CreateMap<User, UserDTO>().ReverseMap();
+
+            // Product Mappers
+            CreateMap<ProductDTO, Product>().ReverseMap();
+            CreateMap<ProductCreateDTO, Product>().ReverseMap();
+            CreateMap<ProductUpdateDTO, Product>().ReverseMap();
         }
     }
 }

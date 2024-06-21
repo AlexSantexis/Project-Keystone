@@ -27,6 +27,7 @@ namespace Project_Keystone
             builder.Services.AddRepositoriesConfiguration();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped(provider =>
                  new MapperConfiguration(cfg =>
                  {

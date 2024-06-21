@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using Project_Keystone.Api.Models.DTOs;
+using Project_Keystone.Api.Models.DTOs.UserDTOs;
 using Project_Keystone.Core.Entities;
 using System.Security.Claims;
 

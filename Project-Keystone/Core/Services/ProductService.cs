@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Project_Keystone.Api.Models.DTOs.ProductDTOs;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Core.Services.Interfaces;
 using Project_Keystone.Infrastructure.Repositories;
@@ -19,17 +20,19 @@ namespace Project_Keystone.Core.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddProductsAsync(Product product)
+        public async Task<bool> AddProductsAsync(ProductCreateDTO productDto)
         {
             try
             {
+                var product = _mapper.Map<Product>(productDto);
                 await _unitOfWork.Products.AddAsync(product);
                 await _unitOfWork.CommitAsync();
+                _logger.LogInformation("Product added successfully.");
                 return true;
             }
             catch   (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while adding product {ProductId}", product.ProductId);
+                _logger.LogError(ex, "Error adding product.");
                 return false;
             }
             
@@ -56,27 +59,38 @@ namespace Project_Keystone.Core.Services
             }
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
         {
-            return await _unitOfWork.Products.GetAllAsync();
+            var products = await _unitOfWork.Products.GetAllAsync();
+            return _mapper.Map<IEnumerable<ProductDTO>>(products);
         }
 
-        public async Task<Product?> GetProductByIdAsync(int productId)
+        public async Task<ProductDTO?> GetProductByIdAsync(int productId)
         {
-            return await _unitOfWork.Products.GetByIdAsync(productId);
+            var product = await _unitOfWork.Products.GetByIdAsync(productId);
+            return _mapper.Map<ProductDTO>(product);
         }
 
-        public async Task<bool> UpdateProductAsync(Product product)
+        public async Task<bool> UpdateProductAsync(int productId,ProductUpdateDTO productDto)
         {
             try
             {
+                var existingProduct = await _unitOfWork.Products.GetByIdAsync(productId);
+                if (existingProduct == null)
+                {
+                    _logger.LogWarning("Product with ID {ProductId} not found.", productId);
+                    return false;
+                }
+
+                var product = _mapper.Map(productDto, existingProduct);
                 _unitOfWork.Products.UpdateAsync(product);
                await  _unitOfWork.CommitAsync();
+                _logger.LogInformation("Product updated successfully.");
                 return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while updating product {ProductId}", product.ProductId);
+                _logger.LogError(ex, "An error occurred while updating product {ProductId}", productId);
                 return false;
             }   
         }
