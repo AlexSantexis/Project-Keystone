@@ -26,19 +26,18 @@ namespace Project_Keystone.Infrastructure.Repositories
             new Claim("Email",user.Email!)
         };
 
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
+            
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key is not configured.")));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expirationMinutes = Convert.ToDouble(_config["Jwt:ExpirationInMinutes"] ?? "15");
             var token = new JwtSecurityToken
                 (
                     _config["Jwt:Issuer"],
                     _config["Jwt:Audience"],
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(15),
+                    expires: DateTime.Now.AddMinutes(expirationMinutes),
                     signingCredentials: credentials);
 
                     return new JwtSecurityTokenHandler().WriteToken(token);

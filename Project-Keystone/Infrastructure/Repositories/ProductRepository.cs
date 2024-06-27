@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
 using Project_Keystone.Infrastructure.Repositories.Interfaces;
+using System.Linq.Expressions;
 
 namespace Project_Keystone.Infrastructure.Repositories
 {
@@ -11,64 +13,149 @@ namespace Project_Keystone.Infrastructure.Repositories
 
         public ProductRepository(ProjectKeystoneDbContext context) : base(context) { }
 
-        
-
-        public async Task<IEnumerable<Product>> FilterProductsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
-        {
-           return await _context.Products
-                .Where(p => p.Price >= minPrice && p.Price <= maxPrice)
-                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<Product>> GetProductsByCategoryIdAsync(int categoryId)
+        public async Task<Product?> GetProductByIdWithDetailsAsync(int productId)
         {
             return await _context.Products
-                .Where(p => p.CategoryId == categoryId)
-                .ToListAsync();
+                .Include(p => p.ProductCategories)
+                    .ThenInclude(pc => pc.Category)
+                .Include(p => p.ProductGenres)
+                    .ThenInclude(pg => pg.Genre)
+                .FirstOrDefaultAsync(p => p.ProductId == productId);
         }
 
-        public async Task<IEnumerable<Product>> GetProductsByGenreIdAsync(int genreId)
+        public async Task<IEnumerable<Product?>> GetProductsByGenreIdWithDetailsAsync(int genreId, int page = 1, int pageSize = 10)
         {
-           return await _context.ProductGenres
-                .Where(pg => pg.GenreId == genreId)
-                .Select(pg => pg.product)
-                .ToListAsync();
+            return await _context.ProductGenres
+                 .Where(pg => pg.GenreId == genreId)
+                 .Include(pg => pg.Product)
+                     .ThenInclude(p => p.ProductGenres)
+                         .ThenInclude(pg => pg.Genre)
+                 .Include(pg => pg.Product)
+                     .ThenInclude(p => p.ProductCategories)
+                         .ThenInclude(pc => pc.Category)
+                 .Select(pg => pg.Product)
+                 .OrderBy(p => p.Name)
+                 .Skip((page - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetProductWithDetailsAsync()
+        public async Task<IEnumerable<Product?>> GetProductsByCategoryIdWithDetailsAsync(int categoryId, int page = 1, int pageSize = 10)
+        {
+            return await _context.ProductCategories
+               .Where(pc => pc.CategoryId == categoryId)
+               .Include(pc => pc.Product)
+                   .ThenInclude(p => p.ProductCategories)
+                       .ThenInclude(pc => pc.Category)
+               .Include(pc => pc.Product)
+                   .ThenInclude(p => p.ProductGenres)
+                       .ThenInclude(pg => pg.Genre)
+               .Select(pc => pc.Product)
+               .OrderBy(p => p.Name)
+               .Skip((page - 1) * pageSize)
+               .Take(pageSize)
+               .ToListAsync();
+        }
+
+
+        public async Task<IEnumerable<Product>> GetProductWithDetailsAsync(int page = 1, int pageSize = 10)
         {
             return await _context.Products
-                .Include(p => p.Category)
+                .Include(p => p.ProductCategories)
+                    .ThenInclude(pc => pc.Category)
+                .Include(p => p.ProductGenres)
+                    .ThenInclude(pg => pg.Genre)
+                .OrderBy(p => p.Name)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Product>> SearchProductsAsync(string searchTerm)
+        public async Task<IEnumerable<Product>> SearchProductsByNameAsync(string? searchTerm)
         {
+            searchTerm = searchTerm!.ToLower();
             return await _context.Products
-                .Where(p => p.Name.Contains(searchTerm) || p.Description!.Contains(searchTerm))
+                .Include(p => p.ProductCategories)
+                    .ThenInclude(pc => pc.Category)
+                .Include(p => p.ProductGenres)
+                    .ThenInclude(pg => pg.Genre)
+                .Where(p => p.Name.ToLower().Contains(searchTerm))
                 .ToListAsync();
         }
+
+
+        public async Task<IEnumerable<Product>> FilterAndSortProductsAsync(
+    string sortOrder = "asc",
+    string? genreName = null,
+    int page = 1,
+    int pageSize = 10,
+    string? categoryName = null)
+        {
+            var query = _context.Products
+                .Include(p => p.ProductCategories)
+                    .ThenInclude(pc => pc.Category)
+                .Include(p => p.ProductGenres)
+                    .ThenInclude(pg => pg.Genre)
+                .AsQueryable();
+
+            // Filter by category
+            if (!string.IsNullOrEmpty(categoryName))
+            {
+                categoryName = categoryName.ToLower();
+                query = query.Where(p => p.ProductCategories.Any(pc => pc.Category.Name.ToLower() == categoryName));
+            }
+
+            // Filter by genre
+            if (!string.IsNullOrEmpty(genreName))
+            {
+                genreName = genreName.ToLower();
+                query = query.Where(p => p.ProductGenres.Any(pg => pg.Genre.Name.ToLower() == genreName));
+            }
+
+            // Sort by price
+            query = sortOrder.ToLower() == "desc"
+                ? query.OrderByDescending(p => p.Price)
+                : query.OrderBy(p => p.Price);
+
+            // Log the generated SQL query for debugging
+            var sqlQuery = query.ToQueryString();
+            Console.WriteLine("Generated SQL Query: " + sqlQuery);
+
+            // Apply pagination
+            var products = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return products;
+        }
+
 
         public async Task<Product?> UpdateProductAsync(int productId, Product updatedProduct)
         {
-            var product = await _context.Products.Where(p => p.ProductId == productId).FirstOrDefaultAsync();
-            if (product is null || product.ProductId != productId) return null;
-            _context.Products.Attach(updatedProduct);
-            _context.Entry(updatedProduct).State = EntityState.Modified;
-            return product;
+            if (productId != updatedProduct.ProductId)
+            {
+                return null;
+            }
+
+            var existingProduct = await _context.Products.FindAsync(productId);
+            if (existingProduct == null)
+            {
+                return null;
+            }
+
+            _context.Entry(existingProduct).CurrentValues.SetValues(updatedProduct);
+
+            return existingProduct;
         }
 
-        public async Task<bool> UpdateProductImageAsync(int productId, byte[] imageData)
-        {
-           var product = await _context.Products.FindAsync(productId);
-            if (product == null) return false;
-            product.ImageData = imageData;
-            await _context.SaveChangesAsync();
-            return true;
-        }
+        
     }
+}
+
+ 
         
 
 
       
-}
+

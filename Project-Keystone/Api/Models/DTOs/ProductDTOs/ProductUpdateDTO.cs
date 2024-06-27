@@ -6,23 +6,22 @@ namespace Project_Keystone.Api.Models.DTOs.ProductDTOs
     public class ProductUpdateDTO
     {
 
-        [Required]
-        [StringLength(100)]
+        
         public string Name { get; set; } = null!;
 
         public string Description { get; set; } = null!;
 
-        [Required]
-        public int CategoryId { get; set; }
 
-        [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+        
         public decimal Price { get; set; }
 
-        public string ImageUrl { get; set; } = null!;
+        public string? ImgUrl { get; set; }
 
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
+        
+        public List<int> CategoryIds { get; set; } = new List<int>();
+        
         public List<int> GenreIds { get; set; } = new List<int>();
     }
 }

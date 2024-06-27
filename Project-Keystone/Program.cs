@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
 using Project_Keystone.Core.Services.Interfaces;
+using Project_Keystone.Api.Middleware;
 
 
 namespace Project_Keystone
@@ -28,6 +29,7 @@ namespace Project_Keystone
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IWishlistService, WishlistService>();
             builder.Services.AddScoped(provider =>
                  new MapperConfiguration(cfg =>
                  {
@@ -108,6 +110,7 @@ namespace Project_Keystone
     
             app.UseCors("AllowAll");
             app.UseHttpsRedirection();
+            app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

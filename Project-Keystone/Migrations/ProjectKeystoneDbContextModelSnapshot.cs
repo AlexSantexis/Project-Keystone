@@ -159,6 +159,13 @@ namespace Project_Keystone.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("USER_ROLES", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "899cc55b-4b08-4335-a30b-6e82e6d8aace",
+                            RoleId = "dda0e414-944b-4c35-804b-4e4784abc301"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -482,10 +489,6 @@ namespace Project_Keystone.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int")
-                        .HasColumnName("CATEGORY_ID");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("CREATED_AT");
@@ -494,9 +497,10 @@ namespace Project_Keystone.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("DESCRIPTION");
 
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("varbinary(max)")
-                        .HasColumnName("IMAGE_DATA");
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("IMAGE_URL");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -515,9 +519,22 @@ namespace Project_Keystone.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.ToTable("PRODUCTS", (string)null);
+                });
+
+            modelBuilder.Entity("Project_Keystone.Core.Entities.ProductCategory", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "CategoryId");
+
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("PRODUCTS", (string)null);
+                    b.ToTable("PRODUCT_CATEGORIES", (string)null);
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.ProductGenre", b =>
@@ -607,6 +624,23 @@ namespace Project_Keystone.Migrations
                         .HasFilter("[EMAIL] IS NOT NULL");
 
                     b.ToTable("USERS", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "899cc55b-4b08-4335-a30b-6e82e6d8aace",
+                            ConcurrencyStamp = "2acb709f-c11c-4fd9-acc6-1c8e1393c475",
+                            CreatedAt = new DateTime(2024, 6, 26, 4, 52, 57, 487, DateTimeKind.Utc).AddTicks(4104),
+                            Email = "admin@example.com",
+                            Firstname = "Admin",
+                            Lastname = "User",
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAI+89fr69lk26Q6zUsgwNTyywBAWEGYK8PSEBIkfHyhMB2P7yBaxQikX/hLJB9zEQ==",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 6, 26, 4, 52, 57, 487, DateTimeKind.Utc).AddTicks(4105),
+                            UserName = "admin@example.com"
+                        });
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Wishlist", b =>
@@ -785,34 +819,42 @@ namespace Project_Keystone.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Project_Keystone.Core.Entities.Product", b =>
+            modelBuilder.Entity("Project_Keystone.Core.Entities.ProductCategory", b =>
                 {
                     b.HasOne("Project_Keystone.Core.Entities.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany("ProductCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Project_Keystone.Core.Entities.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.ProductGenre", b =>
                 {
-                    b.HasOne("Project_Keystone.Core.Entities.Genre", "genre")
+                    b.HasOne("Project_Keystone.Core.Entities.Genre", "Genre")
                         .WithMany("ProductGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Project_Keystone.Core.Entities.Product", "product")
+                    b.HasOne("Project_Keystone.Core.Entities.Product", "Product")
                         .WithMany("ProductGenres")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("genre");
+                    b.Navigation("Genre");
 
-                    b.Navigation("product");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Wishlist", b =>
@@ -850,7 +892,7 @@ namespace Project_Keystone.Migrations
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Category", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("ProductCategories");
                 });
 
             modelBuilder.Entity("Project_Keystone.Core.Entities.Genre", b =>
@@ -868,6 +910,8 @@ namespace Project_Keystone.Migrations
                     b.Navigation("BasketItems");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("ProductCategories");
 
                     b.Navigation("ProductGenres");
 

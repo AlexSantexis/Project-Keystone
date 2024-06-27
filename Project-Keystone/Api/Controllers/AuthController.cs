@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project_Keystone.Api.Exceptions;
 using Project_Keystone.Api.Models.DTOs;
 using Project_Keystone.Api.Models.DTOs.UserDTOs;
 using Project_Keystone.Core.Services.Interfaces;
@@ -25,27 +26,11 @@ namespace Project_Keystone.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogWarning("Invalid model state for Register");
-                return BadRequest(ModelState);
+                return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
 
-            try
-            {
-                var result = await _authService.RegisterUserAsync(registerDTO);
-                if (!result)
-                {
-                    _logger.LogWarning("User registration failed for {Email}", registerDTO.Email);
-                    return BadRequest("User registration failed");
-                }
-
-                _logger.LogInformation("User {Email} registered successfully", registerDTO.Email);
-                return Ok(new { msg = "User registered successfully" });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while registering user {Email}", registerDTO.Email);
-                return StatusCode(500, "Internal server error");
-            }
+            await _authService.RegisterUserAsync(registerDTO);
+            return Ok(new { message = "User registered successfully" });
         }
 
         [HttpPost("login")]
@@ -53,111 +38,65 @@ namespace Project_Keystone.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogWarning("Invalid model state for Login");
-                return BadRequest(ModelState);
+                return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
 
-            try
-            {
-                var token = await _authService.LoginUserAsync(loginDTO);
-                if (string.IsNullOrEmpty(token))
-                {
-                    _logger.LogWarning("Login failed for {Email}", loginDTO.Email);
-                    return Unauthorized("Invalid email or password");
-                }
-
-                _logger.LogInformation("User {Email} logged in successfully", loginDTO.Email);
-                return Ok(new { access_token = token });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while logging in user {Email}", loginDTO.Email);
-                return StatusCode(500, "Internal server error");
-            }
+            var token = await _authService.LoginUserAsync(loginDTO);
+            return Ok(new { access_token = token });
         }
 
         [HttpDelete("delete")]
         [Authorize]
         public async Task<IActionResult> DeleteUser([FromBody] DeleteUserDTO deleteUserDTO)
         {
-            if (!ModelState.IsValid) 
-            {
-                _logger.LogWarning("Invalid model state for DeleteUser");
-                return BadRequest(new {msg = "Invalid user data."});
-            }
-            try
-            {
-                var result = await _authService.DeleteUserAsync(deleteUserDTO.Email);
-                if (!result)
-                {
-                    _logger.LogWarning("User deletion failed for {Email}", deleteUserDTO.Email);
-                    return BadRequest(new { msg = "User deletion failed." });
-                }
 
-                _logger.LogInformation("User {Email} deleted successfully", deleteUserDTO.Email);
-                return Ok(new { msg = "User deleted successfully." });
-            }
-            catch (Exception ex)
+            if (!ModelState.IsValid)
             {
-                _logger.LogError(ex, "An error occurred while deleting user {Email}", deleteUserDTO.Email);
-                return StatusCode(500, new { msg = "Internal server error." });
+                return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
+
+            await _authService.DeleteUserAsync(deleteUserDTO.Email);
+            return Ok(new { message = "User deleted successfully" });
         }
 
         [HttpPost("update")]
         [Authorize]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDTO userUpdateDTO)
         {
-           var roles = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
-            if (!User.IsInRole("User"))
-            {
-                _logger.LogWarning("User is not authorized to update user");
-                return Unauthorized();
-            }
-            _logger.LogInformation("Authenticated user roles: {Roles}", string.Join(", ", roles));
             if (!ModelState.IsValid)
             {
-                _logger.LogError("An error occured while updating user");
-                return BadRequest(ModelState);
+                return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
-            try
+
+            var (success, newToken) = await _authService.UpdateUserAsync(userUpdateDTO);
+            return Ok(new { message = "User updated successfully", token = newToken });
+        }
+
+        [HttpPost("change-password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] UserUpdatePasswordDTO changePasswordDto)
+        {
+            if (!ModelState.IsValid)
             {
-                var (success, newToken) = await _authService.UpdateUserAsync(userUpdateDTO);
-                if (!success)
-                {
-                    _logger.LogWarning("User update failed for {Email}", userUpdateDTO.Email);
-                    return BadRequest(new { msg = "User update failed." });
-                }
-                return Ok(new { msg = "User updated successfully.", token = newToken });
+                return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
-            catch (Exception ex)
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
             {
-                _logger.LogError(ex, "An error occurred while updating user {Email}", userUpdateDTO.Email);
-                return StatusCode(500, new { msg = "Internal server error." });
+                return Unauthorized(new { message = "User ID not found in the token" });
             }
+
+            await _authService.ChangePasswordAsync(userId, changePasswordDto);
+            return Ok(new { message = "Password changed successfully" });
         }
 
         [HttpGet("me")]
         [Authorize]
         public async Task<IActionResult> GetCurrentUser()
         {
-            try
-            {
-                var userDto = await _authService.GetCurrentUserAsync(User);
-                return Ok(userDto);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized(new { message = "User ID not found in claims" });
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound(new { message = "User not found" });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "An error occurred while retrieving the user", details = ex.Message });
-            }
+            var userDto = await _authService.GetCurrentUserAsync(User);
+            return Ok(userDto);
         }
     }
 

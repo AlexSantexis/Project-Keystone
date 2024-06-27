@@ -10,9 +10,10 @@ namespace Project_Keystone.Infrastructure.Repositories
     {
         private readonly ProjectKeystoneDbContext _context;
 
-        public UnitOfWork(ProjectKeystoneDbContext context,ITokenRepository token, IBasketRepository baskets, ICategoryRepository categories, IOrderRepository orders, IProductRepository products, IWishListRepository wishlists, IGenreRepository genres, IOrderDetailRepository orderDetails, IProductGenreRepository productGenres)
+        public UnitOfWork(ProjectKeystoneDbContext context, ITokenRepository tokens, IBasketRepository baskets, ICategoryRepository categories, IOrderRepository orders, IProductRepository products, IWishListRepository wishlists, IGenreRepository genres, IOrderDetailRepository orderDetails)
         {
             _context = context;
+            Tokens = tokens;
             Baskets = baskets;
             Categories = categories;
             Orders = orders;
@@ -20,9 +21,7 @@ namespace Project_Keystone.Infrastructure.Repositories
             Wishlists = wishlists;
             Genres = genres;
             OrderDetails = orderDetails;
-            ProductGenres = productGenres;
-            Tokens = token;
-            
+           
         }
 
         public ITokenRepository Tokens { get; private set; }
@@ -33,7 +32,7 @@ namespace Project_Keystone.Infrastructure.Repositories
         public IWishListRepository Wishlists { get; private set; }
         public IGenreRepository Genres { get; private set; }
         public IOrderDetailRepository OrderDetails { get; private set; }
-        public IProductGenreRepository ProductGenres { get; private set; }
+       
 
 
         public async Task<int> CommitAsync()

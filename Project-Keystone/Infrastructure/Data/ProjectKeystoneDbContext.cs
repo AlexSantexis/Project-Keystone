@@ -17,7 +17,7 @@ namespace Project_Keystone.Infrastructure.Data
         public virtual DbSet<BasketItem> BasketItems { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
 
-
+        public virtual DbSet<ProductCategory>  ProductCategories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
@@ -35,7 +35,8 @@ namespace Project_Keystone.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            var adminUserId = Guid.NewGuid().ToString();
+            var hasher = new PasswordHasher<User>();
             var userRoleId = "7ec4273a-4767-4b83-b385-ee2136aa2eaf";
             var adminRoleId = "dda0e414-944b-4c35-804b-4e4784abc301";
             var roles = new List<IdentityRole<string>>
@@ -74,6 +75,28 @@ namespace Project_Keystone.Infrastructure.Data
             new Genre { GenreId = 4, Name = "Strategy" },
             new Genre { GenreId = 5, Name = "Multiplayer" }
         };
+
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Id = adminUserId,
+                UserName = "admin@example.com",
+                NormalizedUserName = "ADMIN@EXAMPLE.COM",
+                Email = "admin@example.com",
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null!, "AdminPassword123!"),
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                Firstname = "Admin",
+                Lastname = "User",
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = adminRoleId,
+                UserId = adminUserId
+            });
 
             modelBuilder.Entity<Genre>().HasData(genres);
 
@@ -203,13 +226,11 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
                 entity.Property(e => e.Name).HasMaxLength(100).HasColumnName("NAME");
                 entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
-                entity.Property(e => e.CategoryId).HasColumnName("CATEGORY_ID");
                 entity.Property(e => e.Price).HasColumnName("PRICE");
-                entity.Property(e => e.ImageData).HasColumnName("IMAGE_DATA");
+                entity.Property(e => e.ImageUrl).HasColumnName("IMAGE_URL").HasMaxLength(255);
                 entity.Property(e => e.CreatedAt).HasColumnName("CREATED_AT");
                 entity.Property(e => e.UpdatedAt).HasColumnName("UPDATED_AT");
                 entity.Property(e => e.Price).HasPrecision(18, 2);
-                entity.HasOne(d => d.Category).WithMany(p => p.Products).HasForeignKey(d => d.CategoryId);
             });
 
             modelBuilder.Entity<Wishlist>(entity =>
@@ -240,17 +261,38 @@ namespace Project_Keystone.Infrastructure.Data
 
                 entity.HasIndex(pg => pg.GenreId);
 
-                entity.HasOne(pg => pg.product)
+                entity.HasOne(pg => pg.Product)
                     .WithMany(p => p.ProductGenres)
                     .HasForeignKey(pg => pg.ProductId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                entity.HasOne(pg => pg.genre)
+                entity.HasOne(pg => pg.Genre)
                     .WithMany(g => g.ProductGenres)
                     .HasForeignKey(pg => pg.GenreId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
+            });
+
+
+            modelBuilder.Entity<ProductCategory>(entity =>
+            {
+                entity.HasKey(pc => new { pc.ProductId, pc.CategoryId });
+
+                entity.HasOne(pc => pc.Product)
+                      .WithMany(p => p.ProductCategories)
+                      .HasForeignKey(pc => pc.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .IsRequired();
+
+                entity.HasOne(pc => pc.Category)
+                      .WithMany(c => c.ProductCategories)
+                      .HasForeignKey(pc => pc.CategoryId)
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .IsRequired();
+
+
+                entity.ToTable("PRODUCT_CATEGORIES");
             });
 
             modelBuilder.Entity<Genre>(entity =>

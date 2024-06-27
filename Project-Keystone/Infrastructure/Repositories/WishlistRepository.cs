@@ -11,41 +11,51 @@ namespace Project_Keystone.Infrastructure.Repositories
         {
         }
 
-        public async Task AddItemToWishlistAsync(int wishlistId, WishlistItem item)
-        {
-            var wishlist = await _context.Wishlist
-                .Include(w => w.WishListItems)
-                .FirstOrDefaultAsync(w => w.WishlistId == wishlistId);
-            if(wishlist is not null)
-            {
-                wishlist.WishListItems.Add(item);
-                await _context.SaveChangesAsync();
-            }
-        }
-
         public async Task<Wishlist?> GetWishlistByUserIdAsync(string userId)
         {
             return await _context.Wishlist
-                .Include(w => w.WishListItems)
-                .ThenInclude(wi => wi.Product)
-                .FirstOrDefaultAsync(w => w.UserId == userId);
+            .Include(w => w.WishListItems)
+             .ThenInclude(wi => wi.Product)
+            .FirstOrDefaultAsync(w => w.UserId == userId);
         }
 
-        public Task RemoveItemFromWishlistAsync(int wishlistId, int itemId)
+        public async Task<Wishlist> CreateWishlistAsync(string userId)
         {
-            var wishlist = _context.Wishlist
-                .Include(w => w.WishListItems)
-                .FirstOrDefault(w => w.WishlistId == wishlistId);
-            if(wishlist is not null)
+            var wishlist = new Wishlist { UserId = userId };
+            _context.Wishlist.Add(wishlist);
+            await _context.SaveChangesAsync();
+            return wishlist;
+        }
+
+        public async Task<bool> AddItemToWishlistAsync(int wishlistId, int productId)
+        {
+            var wishlistItem = new WishlistItem
             {
-                var item = wishlist.WishListItems.FirstOrDefault(wi => wi.WishlistItemId == itemId);
-                if(item is not null)
-                {
-                    wishlist.WishListItems.Remove(item);
-                    _context.SaveChanges();
-                }
+                WishlistId = wishlistId,
+                ProductId = productId
+            };
+            await _context.WishlistItem.AddAsync(wishlistItem);
+            return true;
+        }
+
+        public async Task<bool> RemoveItemFromWishlistAsync(int wishlistId, int productId)
+        {
+            var item = await _context.WishlistItem
+            .FirstOrDefaultAsync(wi => wi.WishlistId == wishlistId && wi.ProductId == productId);
+            if (item != null)
+            {
+                _context.WishlistItem.Remove(item);
+                return true;
             }
-            return Task.FromResult(false);
+            return false;
+        }
+
+        public async Task<IEnumerable<WishlistItem>> GetWishlistItemsAsync(int wishlistId)
+        {
+            return await _context.WishlistItem
+                .Where(wi => wi.WishlistId == wishlistId)
+                .Include(wi => wi.Product)
+                .ToListAsync();
         }
     }
 }

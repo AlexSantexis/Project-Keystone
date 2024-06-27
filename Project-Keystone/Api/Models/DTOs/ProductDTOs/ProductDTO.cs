@@ -6,21 +6,18 @@ namespace Project_Keystone.Api.Models.DTOs.ProductDTOs
     public class ProductDTO
     {
         public int? ProductId { get; set; }
-        [Required]
-        [StringLength(100)]
+        
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
-        [Required]
-        public int CategoryId { get; set; }
-        [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+      
+        
         public decimal Price { get; set; }
-        public byte[] ImageData { get; set; } = null!;
-        [Required]
+        public string? ImgUrl { get; set; }
+        
         public DateTime CreatedAt { get; set; }
-        [Required]
+        
         public DateTime UpdatedAt { get; set; }
-        public CategoryDTO Category { get; set; } = null!;
+        public List<CategoryDTO> Categories { get; set; } = new List<CategoryDTO>();
         public List<GenreDTO> Genres { get; set; } = new List<GenreDTO>();
     }
 }
