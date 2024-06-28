@@ -364,3 +364,16 @@ FodyWeavers.xsd
 /Project-Keystone/.env
 /.gitignore
 /.gitignore
+/Project-Keystone/Migrations/20240619204928_InitialCreate.cs
+/Project-Keystone/Migrations/20240619212752_UserUpdates.cs
+/Project-Keystone/Migrations/20240619212955_Gamiesai.cs
+/Project-Keystone/Migrations/20240621165903_ChangesToTables.cs
+/Project-Keystone/Migrations/20240621172444_TablesUpdate.cs
+/Project-Keystone/Migrations/20240625060626_ProductAndCategory-Update.cs
+/Project-Keystone/Migrations/20240625070658_SeedAdminUser.cs
+/Project-Keystone/Migrations/20240625075721_ImageUpdate.cs
+/Project-Keystone/Migrations/20240625090040_ProductCategoryUpdated.cs
+/Project-Keystone/Migrations/20240626045257_ImageUrlUpdate.cs
+/Project-Keystone/Migrations/20240628065739_UserAddress-updates.cs
+/Project-Keystone/Migrations/20240628144602_AdminUpdates.cs
+/Project-Keystone/Migrations/ProjectKeystoneDbContextModelSnapshot.cs
