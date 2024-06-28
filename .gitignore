@@ -377,3 +377,4 @@ FodyWeavers.xsd
 /Project-Keystone/Migrations/20240628065739_UserAddress-updates.cs
 /Project-Keystone/Migrations/20240628144602_AdminUpdates.cs
 /Project-Keystone/Migrations/ProjectKeystoneDbContextModelSnapshot.cs
+/Project-Keystone/Tests/TestBase.cs
