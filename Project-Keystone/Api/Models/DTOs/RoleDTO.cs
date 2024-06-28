@@ -4,9 +4,7 @@ namespace Project_Keystone.Api.Models.DTOs
 {
     public class RoleDTO
     {
-        public int RoleId { get; set; }
-        [Required]
-        [StringLength(20)]
+        public string Id { get; set; }
         public string Name { get; set; } = null!;
     }
 }

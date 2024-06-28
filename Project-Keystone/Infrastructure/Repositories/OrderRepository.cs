@@ -11,22 +11,32 @@ namespace Project_Keystone.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Order?>> GetOrdersByUserId(string userId)
+        public async Task<IEnumerable<Order>> GetOrdersByUserEmailAsync(string email)
         {
             return await _context.Orders
-                .Where(o => o.UserId == userId)
-                .Include(o => o.OrderDetails)
-                .ThenInclude(od => od.Product)
-                .ToListAsync();
-                
+            .Include(o => o.User)
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .Where(o => o.User.Email == email)
+            .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersWithDetailsByUserIdAsync(string userId)
+        {
+             return await _context.Orders
+            .Include(o => o.OrderDetails)
+             .ThenInclude(od => od.Product)
+            .Where(o => o.UserId == userId)
+            .ToListAsync();
         }
 
         public async Task<Order?> GetOrderWithDetailsAsync(int orderId)
         {
             return await _context.Orders
-                .Include(o => o.OrderDetails)
-                .ThenInclude(od => od.Product)
-                .FirstOrDefaultAsync(o => o.OrderId == orderId);
+            .Include(o => o.User)
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .FirstOrDefaultAsync(o => o.OrderId == orderId);
         }
     }
 }

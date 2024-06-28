@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Project_Keystone.Api.Exceptions;
+using Project_Keystone.Api.Exceptions.AuthExceptions;
 using Project_Keystone.Api.Models.DTOs;
 using Project_Keystone.Api.Models.DTOs.UserDTOs;
 using Project_Keystone.Core.Services.Interfaces;
@@ -21,7 +23,7 @@ namespace Project_Keystone.Api.Controllers
         }
 
         [HttpPost("register")]
-        
+
         public async Task<IActionResult> Register([FromBody] UserRegisterDTO registerDTO)
         {
             if (!ModelState.IsValid)
@@ -29,8 +31,20 @@ namespace Project_Keystone.Api.Controllers
                 return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
 
-            await _authService.RegisterUserAsync(registerDTO);
-            return Ok(new { message = "User registered successfully" });
+            try
+            {
+                await _authService.RegisterUserAsync(registerDTO);
+                return Ok(new { message = "User registered successfully" });
+            }
+            catch (UserRegistrationFailedException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred during user registration");
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
         }
 
         [HttpPost("login")]
@@ -38,11 +52,23 @@ namespace Project_Keystone.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+                return BadRequest(new { message = "Invalid input data" });
             }
 
-            var token = await _authService.LoginUserAsync(loginDTO);
-            return Ok(new { access_token = token });
+            try
+            {
+                var tokenModel = await _authService.LoginUserAsync(loginDTO);
+                return Ok(tokenModel);
+            }
+            catch (InvalidCredentialsException)
+            {
+                return Unauthorized(new { message = "Invalid email or password" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred during login for user {Email}", loginDTO.Email);
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
         }
 
         [HttpDelete("delete")]
@@ -55,8 +81,20 @@ namespace Project_Keystone.Api.Controllers
                 return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
 
-            await _authService.DeleteUserAsync(deleteUserDTO.Email);
-            return Ok(new { message = "User deleted successfully" });
+            try
+            {
+                await _authService.DeleteUserAsync(deleteUserDTO.Email);
+                return Ok(new { message = "User deleted successfully" });
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred during user deletion");
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
         }
 
         [HttpPost("update")]
@@ -68,8 +106,24 @@ namespace Project_Keystone.Api.Controllers
                 return BadRequest(new { message = "Invalid input", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
             }
 
-            var (success, newToken) = await _authService.UpdateUserAsync(userUpdateDTO);
-            return Ok(new { message = "User updated successfully", token = newToken });
+            try
+            {
+                var (success, newToken) = await _authService.UpdateUserAsync(userUpdateDTO);
+                return Ok(new { message = "User updated successfully", token = newToken });
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (UserUpdateFailedException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred during user update");
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
         }
 
         [HttpPost("change-password")]
@@ -87,18 +141,72 @@ namespace Project_Keystone.Api.Controllers
                 return Unauthorized(new { message = "User ID not found in the token" });
             }
 
-            await _authService.ChangePasswordAsync(userId, changePasswordDto);
-            return Ok(new { message = "Password changed successfully" });
+            try
+            {
+                await _authService.ChangePasswordAsync(userId, changePasswordDto);
+                return Ok(new { message = "Password changed successfully" });
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (PasswordChangeFailedException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred during password change");
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
         }
 
         [HttpGet("me")]
         [Authorize]
         public async Task<IActionResult> GetCurrentUser()
         {
-            var userDto = await _authService.GetCurrentUserAsync(User);
-            return Ok(userDto);
+            try
+            {
+                var userDto = await _authService.GetCurrentUserAsync(User);
+                return Ok(userDto);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred while getting current user");
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
+        }
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)
+        {
+            if (tokenModel is null)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            try
+            {
+                var newTokenModel = await _authService.RefreshTokenAsync(tokenModel);
+                return Ok(newTokenModel);
+            }
+            catch (SecurityTokenException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An unexpected error occurred during token refresh");
+                return StatusCode(500, new { message = "An internal server error occurred" });
+            }
         }
     }
-
 }
 

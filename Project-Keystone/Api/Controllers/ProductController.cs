@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project_Keystone.Api.Exceptions.ProductExceptions;
 using Project_Keystone.Api.Models.DTOs.ProductDTOs;
 using Project_Keystone.Core.Services.Interfaces;
 
@@ -50,6 +51,10 @@ namespace Project_Keystone.Api.Controllers
         public async Task<ActionResult<ProductDTO>> GetProductById(int productId)
         {
             var product = await _productService.GetProductByIdAsync(productId);
+            if (product == null)
+            {
+                return NotFound("No product found with the specified id");
+            }
             return Ok(product);
         }
 

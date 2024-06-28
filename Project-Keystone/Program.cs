@@ -12,6 +12,7 @@ using Project_Keystone.Core.Entities;
 using Project_Keystone.Infrastructure.Data;
 using Project_Keystone.Core.Services.Interfaces;
 using Project_Keystone.Api.Middleware;
+using DotNetEnv;
 
 
 namespace Project_Keystone
@@ -20,6 +21,7 @@ namespace Project_Keystone
     {
         public static void Main(string[] args)
         {
+            Env.Load();
             var builder = WebApplication.CreateBuilder(args);
 
             builder.AddSerilogConfiguration();
@@ -30,6 +32,10 @@ namespace Project_Keystone
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IWishlistService, WishlistService>();
+            builder.Services.AddScoped<IAddressService, AddressService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IBasketService, BasketService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped(provider =>
                  new MapperConfiguration(cfg =>
                  {

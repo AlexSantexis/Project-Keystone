@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using Project_Keystone.Api.Models.DTOs;
+using Project_Keystone.Api.Models.DTOs.AddressDTos;
+using Project_Keystone.Api.Models.DTOs.BasketDTOs;
+using Project_Keystone.Api.Models.DTOs.OrderDTOs;
 using Project_Keystone.Api.Models.DTOs.ProductDTOs;
 using Project_Keystone.Api.Models.DTOs.UserDTOs;
 using Project_Keystone.Api.Models.DTOs.Wishlist;
@@ -12,7 +15,7 @@ namespace Project_Keystone.Infrastructure.Configurations
         public MapperConfig() {
             //User Mappers
             CreateMap<User,UserLoginDTO>().ReverseMap();
-
+            CreateMap<User, UserDetailedDTO>().ReverseMap();
             CreateMap<UserRegisterDTO,User>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
@@ -70,6 +73,33 @@ namespace Project_Keystone.Infrastructure.Configurations
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price))
                 .ForMember(dest => dest.ImgUrl, opt => opt.MapFrom(src => src.Product.ImageUrl))
                 .ForMember(dest => dest.AddedAt, opt => opt.MapFrom(src => src.AddedAt));
+            
+            //Address Mapper
+            CreateMap<AddAddressDTO, Address>().ReverseMap();
+            CreateMap<AddressDTO, Address>().ReverseMap();
+            CreateMap<Address, AddressDetailedDTO>().ReverseMap();
+
+            //Basket Mapper
+            CreateMap<Basket, BasketDTO>()
+            .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.BasketItems));
+            CreateMap<BasketItem, BasketItemDTO>()
+            .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+            .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price))
+            .ForMember(dest => dest.ImgUrl, opt => opt.MapFrom(src => src.Product.ImageUrl));
+            CreateMap<AddToBasketDTO, BasketItem>();
+
+
+            //Order Mapper
+            CreateMap<Order, OrderDTO>()
+            .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.User.Email))
+            .ForMember(dest => dest.OrderDetails, opt => opt.MapFrom(src => src.OrderDetails));
+
+            CreateMap<OrderDetail, OrderDetailDTO>()
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
+            CreateMap<CreateOrderDTO, Order>();
+
         }
+
     }
 }

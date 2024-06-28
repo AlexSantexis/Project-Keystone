@@ -11,12 +11,5 @@ namespace Project_Keystone.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<OrderDetail?>> GetOrderDetailsByOrderId(int orderId)
-        {
-            return await _context.OrderDetails
-                .Where(od => od.OrderId == orderId)
-                .Include(od => od.Product)
-                .ToListAsync();
-        }
     }
 }

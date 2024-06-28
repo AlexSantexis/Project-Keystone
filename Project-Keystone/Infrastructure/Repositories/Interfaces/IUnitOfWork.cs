@@ -8,9 +8,10 @@
         IProductRepository Products { get; }
         IWishListRepository Wishlists { get; }
         IGenreRepository Genres { get; }
-        IOrderDetailRepository OrderDetails { get; }
-        
+        IAddressRepository Address { get; }
         ITokenRepository Tokens { get; }
+
+        IUserRepository Users { get; }
         Task<int> CommitAsync();
     }
 }

@@ -10,9 +10,11 @@ namespace Project_Keystone.Infrastructure.Repositories
     {
         private readonly ProjectKeystoneDbContext _context;
 
-        public UnitOfWork(ProjectKeystoneDbContext context, ITokenRepository tokens, IBasketRepository baskets, ICategoryRepository categories, IOrderRepository orders, IProductRepository products, IWishListRepository wishlists, IGenreRepository genres, IOrderDetailRepository orderDetails)
+        public UnitOfWork(ProjectKeystoneDbContext context, IUserRepository users, IAddressRepository address, ITokenRepository tokens, IBasketRepository baskets, ICategoryRepository categories, IOrderRepository orders, IProductRepository products, IWishListRepository wishlists, IGenreRepository genres)
         {
             _context = context;
+            Users = users;
+            Address = address;
             Tokens = tokens;
             Baskets = baskets;
             Categories = categories;
@@ -20,10 +22,11 @@ namespace Project_Keystone.Infrastructure.Repositories
             Products = products;
             Wishlists = wishlists;
             Genres = genres;
-            OrderDetails = orderDetails;
-           
+            
         }
 
+        public IUserRepository Users { get; private set; }
+        public IAddressRepository Address { get; private set; }
         public ITokenRepository Tokens { get; private set; }
         public IBasketRepository Baskets { get; private set; }
         public ICategoryRepository Categories { get; private set; }
@@ -31,10 +34,8 @@ namespace Project_Keystone.Infrastructure.Repositories
         public IProductRepository Products { get; private set; }
         public IWishListRepository Wishlists { get; private set; }
         public IGenreRepository Genres { get; private set; }
-        public IOrderDetailRepository OrderDetails { get; private set; }
-       
 
-
+        
         public async Task<int> CommitAsync()
         {
            return await _context.SaveChangesAsync();

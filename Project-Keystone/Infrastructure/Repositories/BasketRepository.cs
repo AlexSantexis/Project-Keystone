@@ -13,42 +13,83 @@ namespace Project_Keystone.Infrastructure.Repositories
             
         }
 
-        public async Task AddItemToBasketAsync(int basketId, BasketItem item)
-        {
-            var basketItem = await _context.Baskets
-                .Include(b => b.BasketItems)
-                .FirstOrDefaultAsync(b => b.BasketId == basketId);
-            if(basketItem is not null)
-            {
-               basketItem.BasketItems.Add(item);
-                await _context.SaveChangesAsync();
-            }
-        }
-
         public async Task<Basket?> GetBasketByUserIdAsync(string userId)
         {
             return await _context.Baskets
-                 .Include(b => b.BasketItems)
-                 .ThenInclude(bi => bi.Product)
-                 .FirstOrDefaultAsync(b => b.UserId == userId);
+                .Include(b => b.BasketItems)
+                .ThenInclude(bi => bi.Product)
+                .FirstOrDefaultAsync(b => b.UserId == userId);
         }
 
-        public async Task RemoveItemFromBasketAsync(int basketId, int itemId)
+        public async Task<BasketItem?> GetBasketItemAsync(int basketId, int productId)
+        {
+            return await _context.BasketItems
+                .FirstOrDefaultAsync(bi => bi.BasketId == basketId && bi.ProductId == productId);
+        }
+
+        public async Task AddItemToBasketAsync(int basketId, BasketItem item)
         {
             var basket = await _context.Baskets
                 .Include(b => b.BasketItems)
                 .FirstOrDefaultAsync(b => b.BasketId == basketId);
 
-            if (basket is not null)
+            if (basket == null)
             {
-                var item = basket.BasketItems.FirstOrDefault(bi => bi.BasketItemId == itemId);
-                if(item is not null)
-                {
-                    basket.BasketItems.Remove(item);
-                    await _context.SaveChangesAsync();
-                }
+                throw new InvalidOperationException($"Basket with ID {basketId} not found.");
             }
+
+            item.BasketId = basketId;
+            basket.BasketItems.Add(item);
+        }
+
+        public async Task UpdateBasketItemAsync(BasketItem item)
+        {
+            var existingItem = await _context.BasketItems
+                .FirstOrDefaultAsync(bi => bi.BasketItemId == item.BasketItemId);
+
+            if (existingItem == null)
+            {
+                throw new InvalidOperationException($"BasketItem with ID {item.BasketItemId} not found.");
+            }
+
+            _context.Entry(existingItem).CurrentValues.SetValues(item);
+        }
+
+        public async Task RemoveItemFromBasketAsync(int basketId, int basketItemId)
+        {
+            var basket = await _context.Baskets
+                .Include(b => b.BasketItems)
+                .FirstOrDefaultAsync(b => b.BasketId == basketId);
+
+            if (basket == null)
+            {
+                throw new InvalidOperationException($"Basket with ID {basketId} not found.");
+            }
+
+            var itemToRemove = basket.BasketItems.FirstOrDefault(bi => bi.BasketItemId == basketItemId);
+            if (itemToRemove == null)
+            {
+                throw new InvalidOperationException($"BasketItem with ID {basketItemId} not found in Basket {basketId}.");
+            }
+
+            basket.BasketItems.Remove(itemToRemove);
+        }
+
+        public async Task ClearBasketAsync(int basketId)
+        {
+            var basket = await _context.Baskets
+                .Include(b => b.BasketItems)
+                .FirstOrDefaultAsync(b => b.BasketId == basketId);
+
+            if (basket == null)
+            {
+                throw new InvalidOperationException($"Basket with ID {basketId} not found.");
+            }
+
+            basket.BasketItems.Clear();
         }
     }
+
 }
+
 

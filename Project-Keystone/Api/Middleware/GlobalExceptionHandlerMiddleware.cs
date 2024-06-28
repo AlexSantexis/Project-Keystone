@@ -1,4 +1,5 @@
-﻿using Project_Keystone.Api.Exceptions.AuthExceptions;
+﻿using Project_Keystone.Api.Exceptions.AddressExceptions;
+using Project_Keystone.Api.Exceptions.AuthExceptions;
 using Project_Keystone.Api.Exceptions.ProductExceptions;
 using Project_Keystone.Api.Exceptions.WishlistExceptions;
 using System.Text.Json;
@@ -35,11 +36,17 @@ namespace Project_Keystone.Api.Middleware
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exception switch
             {
-                UserNotFoundException or KeyNotFoundException or ProductNotFoundException or WishlistNotFoundException or WishlistItemNotFoundException => StatusCodes.Status404NotFound,
+                UserNotFoundException or KeyNotFoundException or ProductNotFoundException or
+                WishlistNotFoundException or WishlistItemNotFoundException or
+                AddressNotFoundException => StatusCodes.Status404NotFound,
+
                 InvalidCredentialsException => StatusCodes.Status401Unauthorized,
-                UserRegistrationFailedException or UserUpdateFailedException or PasswordChangeFailedException
-                    or ProductCreationFailedException or ProductUpdateFailedException or ProductDeletionFailedException
-                    or WishlistItemAlreadyExistsException or WishlistOperationFailedException => StatusCodes.Status400BadRequest,
+
+                UserRegistrationFailedException or UserUpdateFailedException or PasswordChangeFailedException or
+                ProductCreationFailedException or ProductUpdateFailedException or ProductDeletionFailedException or
+                WishlistItemAlreadyExistsException or WishlistOperationFailedException or
+                AddressAlreadyExistsException or AddressOperationFailedException => StatusCodes.Status400BadRequest,
+
                 _ => StatusCodes.Status500InternalServerError
             };
 

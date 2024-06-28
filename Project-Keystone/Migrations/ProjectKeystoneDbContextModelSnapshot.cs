@@ -163,7 +163,7 @@ namespace Project_Keystone.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "899cc55b-4b08-4335-a30b-6e82e6d8aace",
+                            UserId = "720f3eff-b608-4633-801e-ada6b4e7b2f4",
                             RoleId = "dda0e414-944b-4c35-804b-4e4784abc301"
                         });
                 });
@@ -628,17 +628,17 @@ namespace Project_Keystone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "899cc55b-4b08-4335-a30b-6e82e6d8aace",
-                            ConcurrencyStamp = "2acb709f-c11c-4fd9-acc6-1c8e1393c475",
-                            CreatedAt = new DateTime(2024, 6, 26, 4, 52, 57, 487, DateTimeKind.Utc).AddTicks(4104),
+                            Id = "720f3eff-b608-4633-801e-ada6b4e7b2f4",
+                            ConcurrencyStamp = "338fb339-70f5-4d24-ba35-50305ff4b211",
+                            CreatedAt = new DateTime(2024, 6, 28, 14, 46, 1, 821, DateTimeKind.Utc).AddTicks(3064),
                             Email = "admin@example.com",
                             Firstname = "Admin",
                             Lastname = "User",
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAI+89fr69lk26Q6zUsgwNTyywBAWEGYK8PSEBIkfHyhMB2P7yBaxQikX/hLJB9zEQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAWiwQ7qOxQnlBOo8ZxMxy8nQW/zg3kLmXfoAg8EygvPweA4bZc44YOkFlAtbcpzSw==",
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2024, 6, 26, 4, 52, 57, 487, DateTimeKind.Utc).AddTicks(4105),
+                            UpdatedAt = new DateTime(2024, 6, 28, 14, 46, 1, 821, DateTimeKind.Utc).AddTicks(3066),
                             UserName = "admin@example.com"
                         });
                 });
@@ -758,7 +758,8 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Address")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Address", "UserId");
+                        .HasForeignKey("Project_Keystone.Core.Entities.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
@@ -795,7 +796,8 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
@@ -861,7 +863,8 @@ namespace Project_Keystone.Migrations
                 {
                     b.HasOne("Project_Keystone.Core.Entities.User", "User")
                         .WithOne("Wishlist")
-                        .HasForeignKey("Project_Keystone.Core.Entities.Wishlist", "UserId");
+                        .HasForeignKey("Project_Keystone.Core.Entities.Wishlist", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });

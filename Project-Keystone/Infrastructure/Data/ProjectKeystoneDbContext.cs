@@ -6,23 +6,23 @@ using System.Data;
 
 namespace Project_Keystone.Infrastructure.Data
 {
-    public class ProjectKeystoneDbContext : IdentityDbContext<User, IdentityRole<string>,string>
+    public class ProjectKeystoneDbContext : IdentityDbContext<User, IdentityRole<string>, string>
     {
         public ProjectKeystoneDbContext(DbContextOptions<ProjectKeystoneDbContext> options) : base(options)
         {
         }
 
-        
+
         public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<BasketItem> BasketItems { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
 
-        public virtual DbSet<ProductCategory>  ProductCategories { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }
-        
+
         public virtual DbSet<Wishlist> Wishlist { get; set; }
         public virtual DbSet<WishlistItem> WishlistItem { get; set; }
 
@@ -110,23 +110,24 @@ namespace Project_Keystone.Infrastructure.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                
+
                 entity.ToTable("USERS");
                 entity.HasIndex(e => e.Lastname, "IX_LASTNAME");
                 entity.HasIndex(e => e.Email, "UQ_EMAIL").IsUnique();
                 entity.Property(e => e.Firstname).HasColumnName("FIRSTNAME");
                 entity.Property(e => e.Lastname).HasColumnName("LASTNAME");
                 entity.Property(e => e.Email).HasColumnName("EMAIL");
-                entity.Property(e => e.PasswordHash).HasMaxLength(512).HasColumnName("PASSWORD_HASH");              
+                entity.Property(e => e.PasswordHash).HasMaxLength(512).HasColumnName("PASSWORD_HASH");
                 entity.Property(e => e.CreatedAt).HasColumnName("CREATED_AT");
                 entity.Property(e => e.UpdatedAt).HasColumnName("UPDATED_AT");
                 entity.HasOne(u => u.Address)
                 .WithOne(a => a.User)
-                .HasForeignKey<Address>(a => a.UserId);
+                .HasForeignKey<Address>(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
                 entity.Property(e => e.NormalizedUserName).HasColumnName("NORMALIZED_USER_NAME");
                 entity.Property(e => e.ConcurrencyStamp).HasColumnName("CONCURRENCY_STAMP");
 
-                
+
 
                 entity.Ignore(e => e.EmailConfirmed);
                 entity.Ignore(e => e.TwoFactorEnabled);
@@ -134,17 +135,17 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Ignore(e => e.LockoutEnabled);
                 entity.Ignore(e => e.PhoneNumberConfirmed);
                 entity.Ignore(e => e.SecurityStamp);
-                
+
                 entity.Ignore(e => e.AccessFailedCount);
                 entity.Ignore(e => e.PhoneNumber);
-                
+
             });
 
             modelBuilder.Entity<IdentityRole<string>>(entity =>
             {
 
                 entity.ToTable("ROLES");
-                
+
             });
 
             modelBuilder.Entity<IdentityUserRole<string>>(entity =>
@@ -153,7 +154,7 @@ namespace Project_Keystone.Infrastructure.Data
 
             });
 
-          
+
 
 
             modelBuilder.Entity<Basket>(entity =>
@@ -198,11 +199,12 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.OrderDate).HasColumnName("ORDER_DATE");
                 entity.Property(e => e.TotalAmount).HasColumnName("TOTAL_AMOUNT");
                 entity.Property(e => e.StreetAddress).HasColumnName("STREET_ADDRESS");
-                entity.Property(e => e.City).HasColumnName("CITY");               
+                entity.Property(e => e.City).HasColumnName("CITY");
                 entity.Property(e => e.ZipCode).HasColumnName("ZIP_CODE");
                 entity.Property(e => e.Country).HasColumnName("COUNTRY");
                 entity.Property(e => e.TotalAmount).HasPrecision(18, 2);
-                entity.HasOne(d => d.User).WithMany(p => p.Orders).HasForeignKey(d => d.UserId);
+                entity.HasOne(d => d.User).WithMany(p => p.Orders).HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>
@@ -216,7 +218,7 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.Total).HasColumnName("TOTAL");
                 entity.Property(e => e.Price).HasPrecision(18, 2);
                 entity.Property(e => e.Total).HasPrecision(18, 2);
-                entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails).HasForeignKey(d => d.OrderId);
+                entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails).HasForeignKey(d => d.OrderId).OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails).HasForeignKey(d => d.ProductId);
             });
 
@@ -240,7 +242,8 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.UserId).HasColumnName("USER_ID");
                 entity.Property(e => e.CreatedAt).HasColumnName("CREATED_AT");
                 entity.Property(e => e.UpdatedAt).HasColumnName("UPDATED_AT");
-                entity.HasOne(d => d.User).WithOne(p => p.Wishlist).HasForeignKey<Wishlist>(d => d.UserId);
+                entity.HasOne(d => d.User).WithOne(p => p.Wishlist).HasForeignKey<Wishlist>(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<WishlistItem>(entity =>
@@ -251,7 +254,7 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.ProductId).HasColumnName("PRODUCT_ID");
                 entity.Property(e => e.AddedAt).HasColumnName("ADDED_AT");
                 entity.HasOne(d => d.Wishlist).WithMany(p => p.WishListItems).HasForeignKey(d => d.WishlistId);
-                entity.HasOne(d => d.Product).WithMany(p => p.WishlistItems).HasForeignKey(d => d.ProductId);
+                entity.HasOne(d => d.Product).WithMany(p => p.WishlistItems).HasForeignKey(d => d.ProductId);  
             });
 
             modelBuilder.Entity<ProductGenre>(entity =>
@@ -316,9 +319,13 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(a => a.UserId).HasColumnName("USER_ID");
                 entity.HasOne(a => a.User)
                     .WithOne(u => u.Address)
-                    .HasForeignKey<Address>(a => a.UserId);
+                    .HasForeignKey<Address>(a => a.UserId);                   
             });
-
         }
     }
 }
+            
+            
+   
+
+

@@ -14,7 +14,8 @@ namespace Project_Keystone.Infrastructure.Configurations
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IWishListRepository, WishlistRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
-            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
             
