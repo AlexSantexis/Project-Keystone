@@ -16,6 +16,7 @@ namespace Project_Keystone.Tests
         {
             Log.Information("Test finished");
             Log.CloseAndFlush();
+            Log.CloseAndFlush();
         }
     }
 }
