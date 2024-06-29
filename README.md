@@ -1,8 +1,5 @@
 # PROJECT KEYSTONE BACK-END 
 ## Developed with asp.net web api 
-### This is my Final project for the Coding Factory Bootcamp.
-# Project Keystone
-
 Project Keystone is a .NET 8.0 web application showcasing various modern technologies and best practices.
 
 ## Technologies Used
