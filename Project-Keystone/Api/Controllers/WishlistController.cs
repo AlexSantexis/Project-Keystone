@@ -35,11 +35,7 @@ namespace Project_Keystone.Api.Controllers
             }
             return userId;
         }
-        //private string? GetUserId()
-        //{
-        //    return User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //}
-
+       
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<WishlistDTO>> GetWishlist()

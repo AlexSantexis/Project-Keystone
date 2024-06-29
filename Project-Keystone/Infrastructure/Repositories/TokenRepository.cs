@@ -61,7 +61,7 @@ namespace Project_Keystone.Infrastructure.Repositories
                 ValidateIssuer = true,
                 ValidIssuer = _config["Jwt:Issuer"],
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"])),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!)),
                 ValidateLifetime = false
             };
 

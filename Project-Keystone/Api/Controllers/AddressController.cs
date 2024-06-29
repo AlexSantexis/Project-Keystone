@@ -10,6 +10,7 @@ namespace Project_Keystone.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class AddressController : ControllerBase
     {
         private readonly IAddressService _addressService;
@@ -31,6 +32,13 @@ namespace Project_Keystone.Api.Controllers
             return userId;
         }
 
+        /// <summary>
+        /// Gets the address of the authenticated user.
+        /// </summary>
+        /// <returns>The user's address.</returns>
+        /// <response code="200">Returns the user's address</response>
+        /// <response code="401">If the user is not authenticated</response>
+        /// <response code="404">If the address is not found</response>
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<AddressDTO>> GetAddress()
@@ -51,6 +59,15 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds a new address for the authenticated user.
+        /// </summary>
+        /// <param name="addressDTO">The address data to add.</param>
+        /// <returns>A success message if the address is added successfully.</returns>
+        /// <response code="200">Returns success message when address is added</response>
+        /// <response code="400">If the address data is invalid or operation fails</response>
+        /// <response code="401">If the user is not authenticated</response>
+        /// <response code="409">If an address already exists for the user</response>
         [HttpPost("add")]
         [Authorize]
         public async Task<IActionResult> AddAddress(AddAddressDTO addressDTO)
@@ -75,6 +92,15 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates the address of the authenticated user.
+        /// </summary>
+        /// <param name="addressDTO">The updated address data.</param>
+        /// <returns>A success message if the address is updated successfully.</returns>
+        /// <response code="200">Returns success message when address is updated</response>
+        /// <response code="400">If the address data is invalid or operation fails</response>
+        /// <response code="401">If the user is not authenticated</response>
+        /// <response code="404">If the address is not found</response>
         [HttpPost("update")]
         [Authorize]
         public async Task<IActionResult> UpdateAddress(AddAddressDTO addressDTO)
@@ -99,6 +125,14 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Removes the address of the authenticated user.
+        /// </summary>
+        /// <returns>A success message if the address is removed successfully.</returns>
+        /// <response code="200">Returns success message when address is removed</response>
+        /// <response code="400">If the operation fails</response>
+        /// <response code="401">If the user is not authenticated</response>
+        /// <response code="404">If the address is not found</response>
         [HttpDelete]
         [Authorize]
         public async Task<IActionResult> RemoveAddress()

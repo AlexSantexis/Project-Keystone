@@ -165,7 +165,8 @@ namespace Project_Keystone.Infrastructure.Data
                 entity.Property(e => e.UserId).HasColumnName("USER_ID");
                 entity.Property(e => e.CreatedAt).HasColumnName("CREATED_AT");
                 entity.Property(e => e.UpdatedAt).HasColumnName("UPDATED_AT");
-                entity.HasOne(d => d.User).WithOne(p => p.Basket).HasForeignKey<Basket>(d => d.UserId);
+                entity.HasOne(d => d.User).WithOne(p => p.Basket).HasForeignKey<Basket>(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<BasketItem>(entity =>

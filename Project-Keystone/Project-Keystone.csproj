@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Exceptions\" />
     <Folder Include="Infrastructure\Logging\" />
     <Folder Include="Migrations\" />
   </ItemGroup>

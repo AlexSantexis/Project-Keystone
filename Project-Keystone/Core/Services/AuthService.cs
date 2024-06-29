@@ -175,7 +175,7 @@ namespace Project_Keystone.Core.Services
 
         public async Task<(bool Success,string? Token)> UpdateUserAsync(UserUpdateDTO updateDTO)
         {
-            var user = await _userManager.FindByEmailAsync(updateDTO.Email);
+            var user = await _userManager.FindByEmailAsync(updateDTO.CurrentEmail);
             if (user == null)
             {
                 _logger.LogWarning("Update user failed. User with email {Email} does not exist", updateDTO.Email);

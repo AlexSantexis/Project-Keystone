@@ -21,7 +21,7 @@ namespace Project_Keystone.Api.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrdersByUserEmail(string email)
         {
-            // Ensure the user is only accessing their own orders
+            
             if (email != User.FindFirstValue(ClaimTypes.Email))
             {
                 return Forbid();
@@ -34,7 +34,7 @@ namespace Project_Keystone.Api.Controllers
         [Authorize]
         public async Task<ActionResult<OrderDTO>> CreateOrder(CreateOrderDTO createOrderDTO)
         {
-            // Ensure the user is only creating an order for themselves
+            
             if (createOrderDTO.UserEmail != User.FindFirstValue(ClaimTypes.Email))
             {
                 return Forbid();
@@ -60,7 +60,6 @@ namespace Project_Keystone.Api.Controllers
         public async Task<ActionResult<OrderDTO>> GetOrderById(int id)
         {
             var order = await _orderService.GetOrderByIdAsync(id);
-            // Ensure the user is only accessing their own order
             if (order.UserEmail != User.FindFirstValue(ClaimTypes.Email))
             {
                 return Forbid();

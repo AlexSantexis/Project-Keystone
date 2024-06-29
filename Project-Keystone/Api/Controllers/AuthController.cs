@@ -12,6 +12,7 @@ namespace Project_Keystone.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;
@@ -22,8 +23,15 @@ namespace Project_Keystone.Api.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="registerDTO">The user registration data.</param>
+        /// <returns>A success message if registration is successful.</returns>
+        /// <response code="200">Returns success message when user is registered</response>
+        /// <response code="400">If the registration data is invalid or registration fails</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpPost("register")]
-
         public async Task<IActionResult> Register([FromBody] UserRegisterDTO registerDTO)
         {
             if (!ModelState.IsValid)
@@ -47,6 +55,15 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Authenticates a user and returns a token.
+        /// </summary>
+        /// <param name="loginDTO">The user login credentials.</param>
+        /// <returns>A token model if authentication is successful.</returns>
+        /// <response code="200">Returns the token model when authentication is successful</response>
+        /// <response code="400">If the login data is invalid</response>
+        /// <response code="401">If the credentials are invalid</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDTO loginDTO)
         {
@@ -71,6 +88,15 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes a user account.
+        /// </summary>
+        /// <param name="deleteUserDTO">The user deletion data.</param>
+        /// <returns>A success message if deletion is successful.</returns>
+        /// <response code="200">Returns success message when user is deleted</response>
+        /// <response code="400">If the deletion data is invalid</response>
+        /// <response code="404">If the user is not found</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpDelete("delete")]
         [Authorize]
         public async Task<IActionResult> DeleteUser([FromBody] DeleteUserDTO deleteUserDTO)
@@ -97,6 +123,15 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a user's information.
+        /// </summary>
+        /// <param name="userUpdateDTO">The user update data.</param>
+        /// <returns>A success message and new token if update is successful.</returns>
+        /// <response code="200">Returns success message and new token when user is updated</response>
+        /// <response code="400">If the update data is invalid or update fails</response>
+        /// <response code="404">If the user is not found</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpPost("update")]
         [Authorize]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDTO userUpdateDTO)
@@ -126,6 +161,15 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Changes a user's password.
+        /// </summary>
+        /// <param name="changePasswordDto">The password change data.</param>
+        /// <returns>A success message if password change is successful.</returns>
+        /// <response code="200">Returns success message when password is changed</response>
+        /// <response code="400">If the password change data is invalid or change fails</response>
+        /// <response code="404">If the user is not found</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpPost("change-password")]
         [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody] UserUpdatePasswordDTO changePasswordDto)
@@ -161,6 +205,14 @@ namespace Project_Keystone.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the current user's information.
+        /// </summary>
+        /// <returns>The current user's data.</returns>
+        /// <response code="200">Returns the current user's data</response>
+        /// <response code="401">If the user is unauthorized</response>
+        /// <response code="404">If the user is not found</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpGet("me")]
         [Authorize]
         public async Task<IActionResult> GetCurrentUser()
@@ -184,6 +236,16 @@ namespace Project_Keystone.Api.Controllers
                 return StatusCode(500, new { message = "An internal server error occurred" });
             }
         }
+
+        /// <summary>
+        /// Refreshes an authentication token.
+        /// </summary>
+        /// <param name="tokenModel">The current token model.</param>
+        /// <returns>A new token model if refresh is successful.</returns>
+        /// <response code="200">Returns a new token model when refresh is successful</response>
+        /// <response code="400">If the token model is invalid</response>
+        /// <response code="401">If the token is invalid or expired</response>
+        /// <response code="500">If an unexpected error occurs</response>
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)
         {
